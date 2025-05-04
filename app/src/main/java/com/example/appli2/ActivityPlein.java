@@ -44,6 +44,8 @@ public class ActivityPlein extends AppCompatActivity {
     private LinearLayout layoutKM, layoutPrixLitre, layoutPrixTotal;
     private Animation shake;
     private SharedPreferences sharedPreferences;
+
+    private int mavariabledetestgit;
     private final List<String> list_carburant = Arrays.asList("SP98", "SP95", "SP95 E10", "E85", "DIESEL");
 
 

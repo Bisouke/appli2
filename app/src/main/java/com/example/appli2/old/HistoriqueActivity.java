@@ -61,16 +61,16 @@ public class HistoriqueActivity extends AppCompatActivity {
         // views
         listViewHistorique = findViewById(R.id.listViewHistorique);
         buttonSupprimer = findViewById(R.id.buttonSupprimerHistorique);
-        textViewNb = findViewById(R.id.textViewNb);
+        textViewNb = findViewById(R.id.textViewNbPlein);
 
-        spinner_tri = findViewById(R.id.spinner_tri);
+        spinner_tri = findViewById(R.id.spinnerTriHistorique);
 
         gasdataCollec = new GasDataCollection(this);
 
         textViewNb.setText(String.valueOf(gasdataCollec.getGasDataSize()));
         refreshHistoryList();
 
-        linearLayoutHistorique = findViewById(R.id.linearLayoutVehicules);
+        linearLayoutHistorique = findViewById(R.id.linearLayoutHistorique);
 
 
 

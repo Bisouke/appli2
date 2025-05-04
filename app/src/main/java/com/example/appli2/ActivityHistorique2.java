@@ -1,6 +1,6 @@
 package com.example.appli2;
 
-import android.app.AlertDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -22,18 +20,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class ActivityHistorique2 extends AppCompatActivity {
 
-    private ListView listViewHistorique;
-    SimpleAdapter adapter;
     private Button buttonSupprimer;
-    private TextView textViewNb;
-    private static int itemSlctPos;
-    private Spinner spinner_tri;
-    static final String allGasDataFileName = "allGasData.json";
-
-    LinearLayout linearLayoutHistorique;
-
-
+    private TextView textViewNbPlein;
+    private Spinner spinnerTriHistorique;
+    LinearLayout linearLayoutHistorique, itemLinearLayout;
     GasDataCollection gasdataCollec;
+
 
             /******************************************************
              *                   O N C R E A T E                  *
@@ -51,44 +43,55 @@ public class ActivityHistorique2 extends AppCompatActivity {
             return insets;
         });
 
-
-        // views
+        // Spinner
+        spinnerTriHistorique = findViewById(R.id.spinnerTriHistorique);
+        // Button
         buttonSupprimer = findViewById(R.id.buttonSupprimerHistorique);
-        textViewNb = findViewById(R.id.textViewNb);
+        // TextView
+        textViewNbPlein = findViewById(R.id.textViewNbPlein);
+        // LinearLayout
+        linearLayoutHistorique = findViewById(R.id.linearLayoutHistorique);
 
-        spinner_tri = findViewById(R.id.spinner_tri);
-
+        // for gas data database access
         gasdataCollec = new GasDataCollection(this);
 
-        textViewNb.setText(String.valueOf(gasdataCollec.getGasDataSize()));
+        // affiche le nombre de plein enregistrés
+        textViewNbPlein.setText(String.valueOf(gasdataCollec.getGasDataSize()));
+
         // refreshHistoryList();
 
-        linearLayoutHistorique = findViewById(R.id.linearLayoutVehicules);
 
-        // INFLATE NEW VIEW IN LINEAR LAYOUT
+
+        //          INFLATE NEW VIEW IN LINEAR LAYOUT
 
         LayoutInflater inflater = LayoutInflater.from(this);
 
+        // create the view
         View view1 = inflater.inflate(R.layout.item_historique_plein,
                 linearLayoutHistorique, false);
+
+        // add the view to the linear layout
         linearLayoutHistorique.addView(view1);
 
-        ConstraintLayout cl = view1.findViewById(R.id.truc);
+        LinearLayout ll = view1.findViewById(R.id.itemLinearLayout);
 
-        cl.setOnClickListener(new View.OnClickListener() {
+        ll.setBackgroundColor(Color.BLUE);
+
+        ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("DEBUG","TEST");
             }
         });
 
+        // create and add multiple history items
 
-        for (int i=0; i<30; i++)
-        {
-            View view2 = inflater.inflate(R.layout.item_historique_plein,
-                    linearLayoutHistorique, false);
-            linearLayoutHistorique.addView(view2);
-        }
+//        for (int i=0; i<30; i++)
+//        {
+//            View view2 = inflater.inflate(R.layout.item_historique_plein,
+//                    linearLayoutHistorique, false);
+//            linearLayoutHistorique.addView(view2);
+//        }
 
 
 //        TextView txt = view1.findViewById(R.id.textView10);
@@ -107,10 +110,10 @@ public class ActivityHistorique2 extends AppCompatActivity {
 
 
         buttonSupprimer.setOnClickListener(v -> {
-            deleteGasData();
+            // deleteGasData();
         });
 
-        spinner_tri.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerTriHistorique.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 refreshHistoryList();
@@ -164,25 +167,6 @@ public class ActivityHistorique2 extends AppCompatActivity {
 //        adapter.notifyDataSetChanged(); // update listView
     }
 
-
-    private void deleteGasData()
-    {
-
-        new AlertDialog.Builder(this)
-                .setTitle("Confirmation")
-                .setMessage("\nConfirmer la suppression ?")
-                .setPositiveButton("Supprimer", (dialog, which) -> {
-
-                    // delete previously clicked item
-                    gasdataCollec.removeGasData(itemSlctPos);
-                    refreshHistoryList();
-
-                })
-                .setNegativeButton("Annuler", (dialog, which) -> dialog.dismiss())
-                .show();
-
-
-    }
 
 
 }

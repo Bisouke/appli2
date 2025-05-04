@@ -75,7 +75,7 @@ public class ActivityHistorique2 extends AppCompatActivity {
 
         LinearLayout ll = view1.findViewById(R.id.itemLinearLayout);
 
-        ll.setBackgroundColor(Color.BLUE);
+        ll.setBackgroundColor(Color.argb(100,149,183,253));
 
         ll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,22 +84,32 @@ public class ActivityHistorique2 extends AppCompatActivity {
             }
         });
 
+
+
+        // create the view
+        View view2 = inflater.inflate(R.layout.item_historique_plein,
+                linearLayoutHistorique, false);
+
+        // add the view to the linear layout
+        linearLayoutHistorique.addView(view2);
+
+        LinearLayout ll2 = view2.findViewById(R.id.itemLinearLayout);
+
+        // ll2.setBackgroundColor(Color.argb(100,149,183,253));
+
+
+
+
         // create and add multiple history items
 
-//        for (int i=0; i<30; i++)
-//        {
-//            View view2 = inflater.inflate(R.layout.item_historique_plein,
-//                    linearLayoutHistorique, false);
-//            linearLayoutHistorique.addView(view2);
-//        }
+        for (int i=0; i<30; i++)
+        {
+            View view3 = inflater.inflate(R.layout.item_historique_plein,
+                    linearLayoutHistorique, false);
+            linearLayoutHistorique.addView(view3);
+        }
 
 
-//        TextView txt = view1.findViewById(R.id.textView10);
-//        txt.setText("coucou");
-
-//        View view2 = inflater.inflate(R.layout.item_historique_plein,
-//                linearLayoutHistorique, false);
-//        linearLayoutHistorique.addView(view2);
 
 
 

@@ -1,8 +1,9 @@
 package com.example.appli2;
 
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,10 +14,14 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ActivityHistorique2 extends AppCompatActivity {
 
@@ -25,6 +30,9 @@ public class ActivityHistorique2 extends AppCompatActivity {
     private Spinner spinnerTriHistorique;
     LinearLayout linearLayoutHistorique, itemLinearLayout;
     GasDataCollection gasdataCollec;
+
+    // View list containing each inflated views
+    private List<View> inflated_view_list;
 
 
             /******************************************************
@@ -62,52 +70,122 @@ public class ActivityHistorique2 extends AppCompatActivity {
 
 
 
-        //          INFLATE NEW VIEW IN LINEAR LAYOUT
-
-        LayoutInflater inflater = LayoutInflater.from(this);
-
-        // create the view
-        View view1 = inflater.inflate(R.layout.item_historique_plein,
-                linearLayoutHistorique, false);
-
-        // add the view to the linear layout
-        linearLayoutHistorique.addView(view1);
-
-        LinearLayout ll = view1.findViewById(R.id.itemLinearLayout);
-
-        ll.setBackgroundColor(Color.argb(100,149,183,253));
-
-        ll.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener listener = new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
-                Log.d("DEBUG","TEST");
+
+                int color, alpha = 0;
+
+                // get background color
+                Drawable background = v.getBackground();
+
+                if (background instanceof ColorDrawable) {
+                    // convert Drawable to ColorDrawable
+                    color = ((ColorDrawable) background).getColor();
+                    // get alpha channel
+                    alpha = Color.alpha(color);
+                }
+
+                if (alpha == 0)
+                {
+                    v.setBackgroundColor(Color.argb(100,149,183,253));
+                }
+                else if (alpha == 100)
+                {
+                    v.setBackgroundColor(Color.argb(0,149,183,253));
+                }
             }
-        });
+        };
 
+        //          INFLATE NEW VIEW IN LINEAR LAYOUT
 
+        // create the inflater
+        LayoutInflater inflater = LayoutInflater.from(this);
 
-        // create the view
-        View view2 = inflater.inflate(R.layout.item_historique_plein,
-                linearLayoutHistorique, false);
+        // get the gas data list from GasDataCollection class
+        List<GasData> list = gasdataCollec.getAllGasData(GasDataCollection.EARLIEST_TOP);
 
-        // add the view to the linear layout
-        linearLayoutHistorique.addView(view2);
+        inflated_view_list = new ArrayList<>();
 
-        LinearLayout ll2 = view2.findViewById(R.id.itemLinearLayout);
-
-        // ll2.setBackgroundColor(Color.argb(100,149,183,253));
-
-
-
-
-        // create and add multiple history items
-
-        for (int i=0; i<30; i++)
+        for (GasData gasdata : list)
+        // for each gas data
         {
-            View view3 = inflater.inflate(R.layout.item_historique_plein,
+            // inflate the view "item_historique_plein"
+            View inflated_view = inflater.inflate(R.layout.item_historique_plein,
                     linearLayoutHistorique, false);
-            linearLayoutHistorique.addView(view3);
+
+            // add the view to the list view
+            inflated_view_list.add(inflated_view);
+
+            // FIND INNER VIEWS
+            // ligne 1
+            TextView textViewItemHist_ligne1 =
+                    inflated_view.findViewById(R.id.textViewItemHist_ligne1);
+            // ligne 2
+            TextView textViewItemHist_ligne2 =
+                    inflated_view.findViewById(R.id.textViewItemHist_ligne2);
+            // prix
+            TextView textViewItemHist_prix =
+                    inflated_view.findViewById(R.id.textViewItemHist_prix);
+            // temps
+            TextView textViewItemHist_temps =
+                    inflated_view.findViewById(R.id.textViewItemHist_temps);
+            // color
+            View textViewItemHist_color =
+                    inflated_view.findViewById(R.id.textViewItemHist_color);
+
+            // MODIFY INNER VIEWS VALUES
+            textViewItemHist_ligne1.setText(gasdata.getVolume() + "L de " + gasdata.getFuel());
+
+            textViewItemHist_ligne2.setText(gasdata.getPrice_liter() + " €/L  "
+                    + gasdata.getDateStr());
+
+            textViewItemHist_prix.setText(gasdata.getTotal_price() + " €");
+
+            switch (gasdata.getFuel())
+            {
+                case "SP98":
+                    textViewItemHist_color.setBackgroundColor(
+                            Color.parseColor("#44ba56")); // SP98 green
+                    break;
+
+                case "S95":
+                    textViewItemHist_color.setBackgroundColor(
+                            Color.parseColor("#44ba56")); // SP95 green
+                    break;
+
+                case "SP95E10":
+                    textViewItemHist_color.setBackgroundColor(
+                            Color.parseColor("#44ba56")); // SP95 green
+                    break;
+
+                case "E85":
+                    textViewItemHist_color.setBackgroundColor(
+                            Color.parseColor("#0170dd")); // E85 blue
+                    break;
+
+                case "DIESEL":
+                    textViewItemHist_color.setBackgroundColor(
+                            Color.parseColor("#fedc01")); // Diesel yellow
+                    break;
+            }
+
+
+
+            // add the view to the linear layout
+            linearLayoutHistorique.addView(inflated_view);
+
+            // IMPORTANT otherwise cannot get ColorDrawable object in the listener
+            inflated_view.setBackgroundColor(Color.argb(0,149,183,253));
+
+            inflated_view.setOnClickListener(listener);
+
         }
+
+
+
+
 
 
 
@@ -126,7 +204,6 @@ public class ActivityHistorique2 extends AppCompatActivity {
         spinnerTriHistorique.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                refreshHistoryList();
             }
 
             @Override

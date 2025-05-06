@@ -84,7 +84,7 @@ public class ActivityStatistique extends AppCompatActivity {
             {
                 for (GasData tmpGasData : monthlist)
                 {
-                    sum += tmpGasData.total_price;
+                    sum += tmpGasData.getTotal_price();
                 }
             }
 
@@ -383,7 +383,7 @@ public class ActivityStatistique extends AppCompatActivity {
 
             for (GasData gasData : arg_listGasData)
             {
-                if (gasData.date.getMonthValue() == month) {
+                if (gasData.getDate().getMonthValue() == month) {
                     tempList.add(gasData);
                 }
             }

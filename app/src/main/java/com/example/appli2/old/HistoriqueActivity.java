@@ -70,7 +70,7 @@ public class HistoriqueActivity extends AppCompatActivity {
         textViewNb.setText(String.valueOf(gasdataCollec.getGasDataSize()));
         refreshHistoryList();
 
-        linearLayoutHistorique = findViewById(R.id.linearLayoutHistorique);
+        // linearLayoutHistorique = findViewById(R.id.linearLayoutHistorique);
 
 
 

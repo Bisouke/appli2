@@ -12,16 +12,19 @@ import java.time.format.DateTimeParseException;
 // collection of data in a usable format
 public class GasData
 {
-    public LocalDate date;
+
+    private LocalDate date;
     private LocalTime time;
     private String fuel;
     private int km;
-    private float price_liter, volume;
-    public float total_price;
+    private float price_liter, volume, total_price;
 
-    static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    static final DecimalFormat numberFormat1 = new DecimalFormat("#.0");
-    static final DecimalFormat numberFormat2 = new DecimalFormat("#.00");
+    private static final DateTimeFormatter date_formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+    private static final DateTimeFormatter hour_formatter = DateTimeFormatter.ofPattern("HH:mm");
+
+    private static final DecimalFormat numberFormat1 = new DecimalFormat("#.0");
+    private static final DecimalFormat numberFormat2 = new DecimalFormat("#.00");
 
 
 
@@ -94,7 +97,7 @@ public class GasData
     public String toString()
     {
 
-        return "" + date.format(formatter) + " à " + time + "  - " + numberFormat1.format(total_price)
+        return "" + date.format(date_formatter) + " à " + time + "  - " + numberFormat1.format(total_price)
                 + " € de " + fuel + "\n " + numberFormat2.format(price_liter) +
                 " €/L soit " + numberFormat1.format(volume) + "L à " + km + " km";
     }
@@ -102,7 +105,7 @@ public class GasData
     public String getFirstLineStr()
     {
 
-        return "" + date.format(formatter) + " à " + time + "  - "
+        return "" + date.format(date_formatter) + " à " + time + "  - "
                 + numberFormat1.format(total_price) + " € de " + fuel;
     }
 
@@ -111,4 +114,45 @@ public class GasData
         return  numberFormat2.format(price_liter) + " €/L soit " + numberFormat1.format(volume)
                 + "L à " + km + " km";
     }
+
+
+
+    // GETTERS
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public String getDateStr() {
+        return date.format(date_formatter);
+    }
+
+    public String getTimeStr() {
+        return time.format(hour_formatter);
+    }
+
+    public String getFuel() {
+        return fuel;
+    }
+
+    public int getKm() {
+        return km;
+    }
+
+    public float getPrice_liter() {
+        return price_liter;
+    }
+
+    public float getVolume() {
+        return volume;
+    }
+
+    public float getTotal_price() {
+        return total_price;
+    }
+
 }

@@ -29,7 +29,7 @@ public class GasDataCollection {
 
     // gas data collection sorting defines
     public static final int EARLIEST_TOP = 0;
-    public static final int LATEST_TOP = 1;
+    public static final int OLDEST_TOP = 1;
 
     private List<GasData> allGasData;
 
@@ -65,23 +65,28 @@ public class GasDataCollection {
     {
 
         // sort
-        if (arg_order == LATEST_TOP)
+        if (arg_order == OLDEST_TOP)
         {
             Collections.sort(allGasData, new Comparator<GasData>() {
                 @Override
                 public int compare(GasData a, GasData b) {
-                    return a.date.compareTo(b.date);
+                    return a.getDate().compareTo(b.getDate());
+                }
+            });
+        }
+        else if (arg_order == EARLIEST_TOP)
+        {
+            Collections.sort(allGasData, new Comparator<GasData>() {
+                @Override
+                public int compare(GasData a, GasData b) {
+                    return b.getDate().compareTo(a.getDate());
                 }
             });
         }
         else
         {
-            Collections.sort(allGasData, new Comparator<GasData>() {
-                @Override
-                public int compare(GasData a, GasData b) {
-                    return b.date.compareTo(a.date);
-                }
-            });
+            // return empty list
+            return new ArrayList<>();
         }
 
 

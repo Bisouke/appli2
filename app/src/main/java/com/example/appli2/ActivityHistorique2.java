@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -30,6 +31,8 @@ public class ActivityHistorique2 extends AppCompatActivity {
     private Spinner spinnerTriHistorique;
     LinearLayout linearLayoutHistorique, itemLinearLayout;
     GasDataCollection gasdataCollec;
+    @Nullable
+    View selected_view;
 
     // View list containing each inflated views
     private List<View> inflated_view_list;
@@ -75,26 +78,32 @@ public class ActivityHistorique2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                int color, alpha = 0;
+//                int color, alpha = 0;
+//
+//                // get background color
+//                Drawable background = v.getBackground();
+//
+//                if (background instanceof ColorDrawable) {
+//                    // convert Drawable to ColorDrawable
+//                    color = ((ColorDrawable) background).getColor();
+//                    // get alpha channel
+//                    alpha = Color.alpha(color);
+//                }
 
-                // get background color
-                Drawable background = v.getBackground();
-
-                if (background instanceof ColorDrawable) {
-                    // convert Drawable to ColorDrawable
-                    color = ((ColorDrawable) background).getColor();
-                    // get alpha channel
-                    alpha = Color.alpha(color);
-                }
-
-                if (alpha == 0)
+                // remove background color for each inflated view
+                for (View view : inflated_view_list)
                 {
-                    v.setBackgroundColor(Color.argb(100,149,183,253));
+                    view.setBackgroundColor(Color.argb(0,149,183,253));
                 }
-                else if (alpha == 100)
-                {
-                    v.setBackgroundColor(Color.argb(0,149,183,253));
-                }
+
+                // set background color on the clicked view
+                v.setBackgroundColor(Color.argb(127,149,183,253));
+
+                // change selected view
+                selected_view = v;
+
+                // enable delete button
+                buttonSupprimer.setEnabled(true);
             }
         };
 
@@ -108,6 +117,7 @@ public class ActivityHistorique2 extends AppCompatActivity {
 
         inflated_view_list = new ArrayList<>();
 
+        // CREATE, ADD, MODIFY THE INFLATED VIEW
         for (GasData gasdata : list)
         // for each gas data
         {
@@ -136,13 +146,18 @@ public class ActivityHistorique2 extends AppCompatActivity {
                     inflated_view.findViewById(R.id.textViewItemHist_color);
 
             // MODIFY INNER VIEWS VALUES
+
+            // line 1
             textViewItemHist_ligne1.setText(gasdata.getVolume() + "L de " + gasdata.getFuel());
 
+            // line 2
             textViewItemHist_ligne2.setText(gasdata.getPrice_liter() + " €/L  "
                     + gasdata.getDateStr());
 
+            // line 3
             textViewItemHist_prix.setText(gasdata.getTotal_price() + " €");
 
+            // change  the square color accordingly to the fuel
             switch (gasdata.getFuel())
             {
                 case "SP98":
@@ -179,6 +194,7 @@ public class ActivityHistorique2 extends AppCompatActivity {
             // IMPORTANT otherwise cannot get ColorDrawable object in the listener
             inflated_view.setBackgroundColor(Color.argb(0,149,183,253));
 
+            // set click listener
             inflated_view.setOnClickListener(listener);
 
         }

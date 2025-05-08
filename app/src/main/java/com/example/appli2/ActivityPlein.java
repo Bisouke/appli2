@@ -26,6 +26,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -293,6 +294,22 @@ public class ActivityPlein extends AppCompatActivity {
             // show error message to the user
             Toast.makeText(this, "Heure incorrect", Toast.LENGTH_SHORT).show();
             editTextHeure.startAnimation(shake);
+            return;
+        }
+
+        // Check if date and time given by the user is in the futur
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime tmp_DateTime = LocalDateTime.of(tmp_date, tmp_time);
+
+        if (tmp_DateTime.isAfter(now))
+        // if date in futur
+        {
+            editTextDate.startAnimation(shake);
+            editTextHeure.startAnimation(shake);
+            Toast.makeText(this, "Date et heure dans le futur",
+                    Toast.LENGTH_SHORT).show();
+
+            // abort
             return;
         }
 

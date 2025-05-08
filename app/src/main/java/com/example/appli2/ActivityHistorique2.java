@@ -106,11 +106,11 @@ public class ActivityHistorique2 extends AppCompatActivity {
                 // change background ressrouce
                 if (isSelected)
                 {
-                    toggleButton_tri.setBackgroundResource(R.drawable.up_arrow);
+                    toggleButton_tri.setBackgroundResource(R.drawable.down_arrow);
                 }
                 else
                 {
-                    toggleButton_tri.setBackgroundResource(R.drawable.down_arrow);
+                    toggleButton_tri.setBackgroundResource(R.drawable.up_arrow);
                 }
 
                 // reverse button state for next click
@@ -213,11 +213,11 @@ public class ActivityHistorique2 extends AppCompatActivity {
 
         if (toggleButton_tri.isSelected())
         {
-            gasDataList = gasdataCollec.getAllGasData(GasDataCollection.EARLIEST_TOP);
+            gasDataList = gasdataCollec.getAllGasData(GasDataCollection.OLDEST_TOP);
         }
         else
         {
-            gasDataList = gasdataCollec.getAllGasData(GasDataCollection.OLDEST_TOP);
+            gasDataList = gasdataCollec.getAllGasData(GasDataCollection.EARLIEST_TOP);
         }
 
         // create the inflater

@@ -298,15 +298,15 @@ public class ActivityHistorique2 extends AppCompatActivity {
             {
                 case "SP98":
                     textViewItemHist_color.setBackgroundColor(
-                            Color.parseColor("#44ba56")); // SP98 green
+                            Color.parseColor("#2f823c")); // SP98 green
                     break;
 
-                case "S95":
+                case "SP95":
                     textViewItemHist_color.setBackgroundColor(
                             Color.parseColor("#44ba56")); // SP95 green
                     break;
 
-                case "SP95E10":
+                case "SP95 E10":
                     textViewItemHist_color.setBackgroundColor(
                             Color.parseColor("#44ba56")); // SP95 green
                     break;

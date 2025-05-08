@@ -78,6 +78,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="#789EEA"
+                android:enabled="false"
                 android:text="Statistiques"
                 android:textSize="18dp" />
 

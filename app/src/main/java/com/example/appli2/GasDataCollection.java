@@ -1,13 +1,9 @@
 package com.example.appli2;
 
 import android.content.Context;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-
-
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -15,14 +11,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Collections;
 
-
+// BUG : CRASH SANS LE FICHIER AllGasData.json
+// Attention, lorsque le fichier allGasData.json est supprimé, la liste n'est plus créée, cela fait planter
+// toute l'application
 
 
 public class GasDataCollection {
@@ -64,34 +62,43 @@ public class GasDataCollection {
     public List<GasData> getAllGasData(int arg_order)
     {
 
-        // sort
+        // copy the gas data collection list
+        List<GasData> allGasDataCopy = new ArrayList<>(allGasData);
+
+        // comparator oldest top
+        Comparator<GasData> comparator_oldest_top = new Comparator<GasData>() {
+            @Override
+            public int compare(GasData a, GasData b) {
+                return a.getDatetime().compareTo(b.getDatetime());
+            }
+        };
+
+        // comparator youngest top
+        Comparator<GasData> comparator_youngest_top = new Comparator<GasData>() {
+            @Override
+            public int compare(GasData a, GasData b) {
+                return b.getDatetime().compareTo(a.getDatetime());
+            }
+        };
+
+        // sorting
         if (arg_order == OLDEST_TOP)
         {
-            Collections.sort(allGasData, new Comparator<GasData>() {
-                @Override
-                public int compare(GasData a, GasData b) {
-                    return a.getDate().compareTo(b.getDate());
-                }
-            });
+            Collections.sort(allGasDataCopy, comparator_oldest_top);
         }
         else if (arg_order == EARLIEST_TOP)
         {
-            Collections.sort(allGasData, new Comparator<GasData>() {
-                @Override
-                public int compare(GasData a, GasData b) {
-                    return b.getDate().compareTo(a.getDate());
-                }
-            });
+            Collections.sort(allGasDataCopy, comparator_youngest_top);
         }
         else
+        // security : no sorting selected
         {
-            // return empty list
             return new ArrayList<>();
+            // return empty list
         }
 
-
-        // return a copy of gas data collection
-        return new ArrayList<>(allGasData);
+        // return the sorted copy
+        return allGasDataCopy;
 
     }
 
@@ -126,6 +133,7 @@ public class GasDataCollection {
             br.close();
             json_str = sb.toString();
         }
+
         catch (IOException e)
         {
             e.printStackTrace();
@@ -141,6 +149,14 @@ public class GasDataCollection {
 
         allGasData = gson.fromJson(json_str, listType);
 
+        // DANGER sécurité temporaire un peu a la zeub
+        if (allGasData == null)
+        {
+            // create an empty list to avoid NPE
+            allGasData = new ArrayList<>();
+        }
+
+
     }
     public void saveGasDataFile()
     {
@@ -149,6 +165,7 @@ public class GasDataCollection {
                 .setPrettyPrinting()
                 .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                 .registerTypeAdapter(LocalTime.class, new LocalTimeAdapter())
+                .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
                 .create();
 
         // convert collection to json

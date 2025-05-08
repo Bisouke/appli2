@@ -5,6 +5,7 @@ import android.util.Log;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -15,6 +16,7 @@ public class GasData
 
     private LocalDate date;
     private LocalTime time;
+    private LocalDateTime datetime; // this attribute is used to sort properly all gasdata
     private String fuel;
     private int km;
     private float price_liter, volume, total_price;
@@ -38,6 +40,11 @@ public class GasData
         this.price_liter = arg_liter_price;
         this.total_price = arg_total_price;
         this.volume = arg_volume;
+
+        this.datetime = LocalDateTime.of(this.date, this.time);
+
+        // Log.d("DEBUG", "datetime = " + this.datetime.toString());
+
     }
 
     public GasData(String arg_date, String arg_time, String arg_fuel, String arg_km,
@@ -125,6 +132,10 @@ public class GasData
 
     public LocalDate getDate() {
         return date;
+    }
+
+    public LocalDateTime getDatetime() {
+        return datetime;
     }
 
     public String getDateStr() {

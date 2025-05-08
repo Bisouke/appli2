@@ -32,6 +32,11 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
+// BUG : CRASH SANS LE FICHIER AllGasData.json
+// Attention, lorsque le fichier allGasData est supprimé, cela fait planter l'activité, il n'est
+// plus possible d'ajouter un plein, en plus de cela l'activité crash de tel façon qu'il est
+// impossible à l'utilisateur de savoir qu'il y a eu un problème avec l'ajout du plein. Dangereux.
+
 public class ActivityPlein extends AppCompatActivity {
 
     // UI

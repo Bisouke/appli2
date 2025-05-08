@@ -24,6 +24,8 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+// BUG : crash à l'ouverture de l'activité avec AllGasData.json vide.
+
 public class ActivityHistorique2 extends AppCompatActivity {
 
     private Button buttonSupprimer;
@@ -93,6 +95,7 @@ public class ActivityHistorique2 extends AppCompatActivity {
                 // remove background color for each inflated view
                 for (View view : inflated_view_list)
                 {
+                    // alpha to 0 : invisible color
                     view.setBackgroundColor(Color.argb(0,149,183,253));
                 }
 
@@ -186,13 +189,8 @@ public class ActivityHistorique2 extends AppCompatActivity {
                     break;
             }
 
-
-
             // add the view to the linear layout
             linearLayoutHistorique.addView(inflated_view);
-
-            // IMPORTANT otherwise cannot get ColorDrawable object in the listener
-            inflated_view.setBackgroundColor(Color.argb(0,149,183,253));
 
             // set click listener
             inflated_view.setOnClickListener(listener);

@@ -29,30 +29,14 @@
             android:text="Historique des pleins"
             android:textSize="24sp" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:text="Tri :"
-                android:textSize="16sp" />
-
-            <Spinner
-                android:id="@+id/spinnerTriHistorique"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:entries="@array/mon_spinner_array"
-                android:gravity="left" />
-
-        </LinearLayout>
+        <ToggleButton
+            android:id="@+id/toggleButton_tri"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:background="@drawable/up_arrow"
+            android:text=""
+            android:textOff=""
+            android:textOn="" />
 
         <ScrollView
             android:layout_width="match_parent"

@@ -144,6 +144,7 @@ public class GasDataCollection {
                 .setPrettyPrinting()
                 .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                 .registerTypeAdapter(LocalTime.class, new LocalTimeAdapter())
+                .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
                 .create();
         Type listType = new TypeToken<List<GasData>>(){}.getType(); // wtf is this ? but it's working
 

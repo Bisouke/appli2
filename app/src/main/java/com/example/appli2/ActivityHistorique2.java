@@ -110,6 +110,7 @@ public class ActivityHistorique2 extends AppCompatActivity {
             }
         };
 
+
         //          INFLATE NEW VIEW IN LINEAR LAYOUT
 
         // create the inflater

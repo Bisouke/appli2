@@ -21,6 +21,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import org.w3c.dom.Text;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -151,17 +153,46 @@ public class ActivityHistorique2 extends AppCompatActivity {
 
             // MODIFY INNER VIEWS VALUES
 
-            // line 1
+            // volume + fuel
             textViewItemHist_ligne1.setText(gasdata.getVolume() + "L de " + gasdata.getFuel());
 
-            // line 2
+            // liter price + date
             textViewItemHist_ligne2.setText(gasdata.getPrice_liter() + " €/L  "
                     + gasdata.getDateStr());
 
-            // line 3
+            // price
             textViewItemHist_prix.setText(gasdata.getTotal_price() + " €");
 
-            // change  the square color accordingly to the fuel
+            // time elapsed
+            LocalDate current_time = LocalDate.now();
+            long daysBetween = ChronoUnit.DAYS.between(gasdata.getDate(), current_time);
+            long monthsBetween = ChronoUnit.MONTHS.between(gasdata.getDate(), current_time);
+            long yearsBetween = ChronoUnit.YEARS.between(gasdata.getDate(), current_time);
+
+            if (daysBetween == 0)
+            {
+                // use "today"
+                textViewItemHist_temps.setText("aujourd'hui");
+            }
+            else if (daysBetween <= 31)
+            {
+                // use days
+                textViewItemHist_temps.setText("il y a " + daysBetween + " jours");
+            }
+            else if (monthsBetween < 12)
+            {
+                // use months
+                textViewItemHist_temps.setText("il y a " + monthsBetween + " mois");
+            }
+            else
+            {
+                // use year
+                textViewItemHist_temps.setText("il y a " + yearsBetween + " ans");
+            }
+
+
+
+            // fuel color
             switch (gasdata.getFuel())
             {
                 case "SP98":
@@ -197,12 +228,6 @@ public class ActivityHistorique2 extends AppCompatActivity {
             inflated_view.setOnClickListener(listener);
 
         }
-
-
-
-
-
-
 
 
 

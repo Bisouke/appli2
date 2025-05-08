@@ -114,10 +114,6 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
-    /<!-- BRICE ESSAI -->
-    <string-array name="mon_spinner_array">
-        <item>Plus récent en haut</item>
-        <item>Moins récent en haut</item>
-    </string-array>
+
 
 </resources>

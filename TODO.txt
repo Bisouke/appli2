@@ -1,0 +1,7 @@
+
+TO DO :
+Suppression de gas data depuis l'historique
+Ajouter un message de confirmation lors de la supression
+Ajout d'un bouton de filtrage dans l'historique
+
+DONE :

@@ -1,16 +1,11 @@
 package com.example.appli2;
 
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -20,8 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
-import org.w3c.dom.Text;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -35,13 +28,11 @@ public class ActivityHistorique2 extends AppCompatActivity {
     private Button buttonSupprimer;
     private TextView textViewNbPlein;
     private ToggleButton toggleButton_tri;
-    private LinearLayout linearLayoutHistorique, itemLinearLayout;
+    private LinearLayout linearLayoutHistorique;
     private GasDataCollection gasdataCollec;
     @Nullable
     private View selected_view;
-
-    // View list containing each inflated views
-    private List<View> inflated_view_list;
+    private List<View> inflated_view_list; // containing each inflated views
 
 
             /******************************************************
@@ -90,7 +81,6 @@ public class ActivityHistorique2 extends AppCompatActivity {
                @Override
                public void onClick(View v)
                {
-                   linearLayoutHistorique.removeAllViews();
                }
            });
 
@@ -140,13 +130,16 @@ public class ActivityHistorique2 extends AppCompatActivity {
         // clean all existing views inside the vertical layout
         linearLayoutHistorique.removeAllViews();
 
-        // click listener on the whole view
+        // click listener on each gas data view
         View.OnClickListener listener = new View.OnClickListener()
         {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
 
-                // remove background color for each inflated view
+                // SELECTION LOGIC for gas data view
+
+                // remove background color for each gas data view
                 for (View view : inflated_view_list)
                 {
                     // alpha to 0 : invisible color
@@ -154,7 +147,8 @@ public class ActivityHistorique2 extends AppCompatActivity {
                 }
 
                 if (selected_view == v)
-                // same view was clicked two or more times in a row
+                // same view was clicked two times in a row
+                // so deselect this gas data view
                 {
                     // desselect
                     selected_view = null;
@@ -164,34 +158,35 @@ public class ActivityHistorique2 extends AppCompatActivity {
                     return;
                 }
 
-                // set background color on the clicked view
-                v.setBackgroundColor(Color.argb(127,149,183,253));
+                else
+                // this gas data view was clicked for the first time
+                {
+                    // set background color on the clicked view
+                    v.setBackgroundColor(Color.argb(127,149,183,253));
 
-                // change selected view
-                selected_view = v;
+                    // change selected view
+                    selected_view = v;
 
-                // enable delete button
-                buttonSupprimer.setEnabled(true);
+                    // enable delete button
+                    buttonSupprimer.setEnabled(true);
+                }
+
             }
         };
 
         // get the gas data list from GasDataCollection class
         List<GasData> gasDataList;
 
-        // get user sorting type (ascendant or descending)
-
+        // get gas data list accordingly to user sorting selection
         if (toggleButton_tri.isSelected())
-        {
             gasDataList = gasdataCollec.getAllGasData(GasDataCollection.OLDEST_TOP);
-        }
         else
-        {
             gasDataList = gasdataCollec.getAllGasData(GasDataCollection.EARLIEST_TOP);
-        }
 
         // create the inflater
         LayoutInflater inflater = LayoutInflater.from(this);
 
+        // list of each gas data view
         inflated_view_list = new ArrayList<>();
 
         // CREATE, ADD, MODIFY THE INFLATED VIEW
@@ -235,7 +230,7 @@ public class ActivityHistorique2 extends AppCompatActivity {
             // price
             textViewItemHist_prix.setText(gasdata.getTotal_price() + " €");
 
-            // time elapsed
+            // TIME ELAPSED
             LocalDate current_time = LocalDate.now();
             long daysBetween = ChronoUnit.DAYS.between(gasdata.getDate(), current_time);
             long monthsBetween = ChronoUnit.MONTHS.between(gasdata.getDate(), current_time);
@@ -268,7 +263,7 @@ public class ActivityHistorique2 extends AppCompatActivity {
                     textViewItemHist_temps.setText("il y a " + yearsBetween + " ans");
             }
 
-            // fuel color
+            // FUEL COLOR
             switch (gasdata.getFuel())
             {
                 case "SP98":

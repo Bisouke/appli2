@@ -78,8 +78,6 @@ public class ActivityHistorique2 extends AppCompatActivity {
         // refreshHistoryList();
 
 
-
-
         inflateGasDataViews();
 
 
@@ -251,7 +249,10 @@ public class ActivityHistorique2 extends AppCompatActivity {
             else if (daysBetween <= 31)
             {
                 // use days
-                textViewItemHist_temps.setText("il y a " + daysBetween + " jours");
+                if(daysBetween == 1)
+                    textViewItemHist_temps.setText("il y a " + daysBetween + " jour");
+                else
+                    textViewItemHist_temps.setText("il y a " + daysBetween + " jours");
             }
             else if (monthsBetween < 12)
             {
@@ -261,7 +262,10 @@ public class ActivityHistorique2 extends AppCompatActivity {
             else
             {
                 // use year
-                textViewItemHist_temps.setText("il y a " + yearsBetween + " ans");
+                if (yearsBetween == 1)
+                    textViewItemHist_temps.setText("il y a " + yearsBetween + " an");
+                else
+                    textViewItemHist_temps.setText("il y a " + yearsBetween + " ans");
             }
 
             // fuel color
@@ -273,13 +277,9 @@ public class ActivityHistorique2 extends AppCompatActivity {
                     break;
 
                 case "SP95":
-                    textViewItemHist_color.setBackgroundColor(
-                            Color.parseColor("#44ba56")); // SP95 green
-                    break;
-
                 case "SP95 E10":
                     textViewItemHist_color.setBackgroundColor(
-                            Color.parseColor("#44ba56")); // SP95 green
+                            Color.parseColor("#44ba56")); // SP95 and SP95E10 green
                     break;
 
                 case "E85":

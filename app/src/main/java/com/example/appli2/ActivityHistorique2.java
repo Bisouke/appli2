@@ -37,6 +37,7 @@ public class ActivityHistorique2 extends AppCompatActivity {
     private ToggleButton toggleButton_tri;
     private LinearLayout linearLayoutHistorique, itemLinearLayout;
     private GasDataCollection gasdataCollec;
+    @Nullable
     private View selected_view;
 
     // View list containing each inflated views
@@ -118,6 +119,11 @@ public class ActivityHistorique2 extends AppCompatActivity {
 
                 // update gas data list view
                 inflateGasDataViews();
+
+                // desselect gas data
+                selected_view = null;
+                buttonSupprimer.setEnabled(false);
+
             }
         });
 
@@ -128,40 +134,6 @@ public class ActivityHistorique2 extends AppCompatActivity {
             *           I N S T A N C E     M E T H O D           *
             *******************************************************/
 
-
-    public void refreshHistoryList()
-    {
-//        // update gas data collection from stored file
-//        gasdataCollec.updateGasDataFromFile();
-//
-//        // get index of sorting type selected
-//        int sort_type = spinner_tri.getSelectedItemPosition();
-//
-//        List<Map<String, String>> data = new ArrayList<>();
-//
-//        for (GasData e : gasdataCollec.getAllGasData(sort_type))
-//        {
-//            Map<String, String> item = new HashMap<>();
-//            item.put("title", e.getFirstLineStr());
-//            item.put("subtitle", e.getSecondLineStr());
-//            data.add(item);
-//        }
-//
-//        // Création de l’adaptateur
-//        adapter = new SimpleAdapter(
-//                this,
-//                data,
-//                android.R.layout.simple_list_item_2, // Layout intégré avec 2 lignes
-//                new String[] {"title", "subtitle"},   // Clés de la map
-//                new int[] {android.R.id.text1, android.R.id.text2} // Views cibles
-//        );
-//
-//        // attention with simple_list_item_1 when checking items
-//        // Associer l'adaptateur au ListView
-//        listViewHistorique.setAdapter(adapter);
-//        // listViewHistorique.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-//        adapter.notifyDataSetChanged(); // update listView
-    }
 
     public void inflateGasDataViews()
     // INFLATE NEW VIEWS IN LINEAR LAYOUT
@@ -176,23 +148,22 @@ public class ActivityHistorique2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//                int color, alpha = 0;
-//
-//                // get background color
-//                Drawable background = v.getBackground();
-//
-//                if (background instanceof ColorDrawable) {
-//                    // convert Drawable to ColorDrawable
-//                    color = ((ColorDrawable) background).getColor();
-//                    // get alpha channel
-//                    alpha = Color.alpha(color);
-//                }
-
                 // remove background color for each inflated view
                 for (View view : inflated_view_list)
                 {
                     // alpha to 0 : invisible color
                     view.setBackgroundColor(Color.argb(0,149,183,253));
+                }
+
+                if (selected_view == v)
+                // same view was clicked two or more times in a row
+                {
+                    // desselect
+                    selected_view = null;
+                    // disable delete button
+                    buttonSupprimer.setEnabled(false);
+                    // skip
+                    return;
                 }
 
                 // set background color on the clicked view

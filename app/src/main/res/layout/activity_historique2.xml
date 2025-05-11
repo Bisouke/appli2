@@ -30,8 +30,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:gravity="center_horizontal|top"
+            android:layout_height="70sp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <ToggleButton
@@ -43,6 +43,21 @@
                 android:textOff=""
                 android:textOn="" />
 
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:alpha="0.5"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/trash" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/filter" />
+
             <Button
                 android:id="@+id/buttonSupprimerHistorique"
                 android:layout_width="wrap_content"
@@ -53,6 +68,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
                 android:orientation="horizontal">
 
                 <TextView

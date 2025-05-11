@@ -84,7 +84,7 @@ public class ActivityStatistique extends AppCompatActivity {
             {
                 for (GasData tmpGasData : monthlist)
                 {
-                    sum += tmpGasData.getTotal_price();
+                    sum += tmpGasData.getTotalPrice();
                 }
             }
 

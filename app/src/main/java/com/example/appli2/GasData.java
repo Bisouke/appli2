@@ -1,14 +1,12 @@
 package com.example.appli2;
 
-import android.util.Log;
-
-import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.lang.Math;
 
 // collection of data in a usable format
 public class GasData
@@ -21,12 +19,12 @@ public class GasData
     private int km;
     private float price_liter, volume, total_price;
 
-    private static final DateTimeFormatter date_formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private static final DateTimeFormatter date_formatter = DateTimeFormatter.ofPattern("dd-MM-yy");
 
     private static final DateTimeFormatter hour_formatter = DateTimeFormatter.ofPattern("HH:mm");
 
     private static final DecimalFormat numberFormat1 = new DecimalFormat("#.0");
-    private static final DecimalFormat numberFormat2 = new DecimalFormat("#.00");
+    private static final DecimalFormat numberFormat2 = new DecimalFormat("0.00");
 
 
 
@@ -158,12 +156,26 @@ public class GasData
         return price_liter;
     }
 
+    public String getPrice_literStr() {
+        return numberFormat2.format(price_liter);
+    }
+
     public float getVolume() {
         return volume;
     }
 
-    public float getTotal_price() {
+    public String getVolumeStr()
+    // return string volume without decimal
+    {
+        return String.valueOf(Math.round(this.volume));
+    }
+
+    public float getTotalPrice() {
         return total_price;
+    }
+
+    public String getTotalPriceStr() {
+        return String.valueOf(Math.round(this.total_price));
     }
 
 }

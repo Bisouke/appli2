@@ -221,14 +221,14 @@ public class ActivityHistorique2 extends AppCompatActivity {
 
             // MODIFY INNER VIEWS VALUES
             // volume + fuel
-            textViewItemHist_ligne1.setText(gasdata.getVolume() + "L de " + gasdata.getFuel());
+            textViewItemHist_ligne1.setText(gasdata.getVolumeStr() + "L de " + gasdata.getFuel());
 
             // liter price + date
-            textViewItemHist_ligne2.setText(gasdata.getPrice_liter() + " €/L  "
+            textViewItemHist_ligne2.setText(gasdata.getPrice_literStr() + " €/L  "
                     + gasdata.getDateStr());
 
             // price
-            textViewItemHist_prix.setText(gasdata.getTotal_price() + " €");
+            textViewItemHist_prix.setText(gasdata.getTotalPriceStr() + " €");
 
             // TIME ELAPSED
             LocalDate current_time = LocalDate.now();

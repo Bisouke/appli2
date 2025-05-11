@@ -46,42 +46,33 @@
 
         </LinearLayout>
 
-        <Space
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/textViewItemHist_temps"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_gravity="left|center_vertical"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="il y a 0 jours"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/textViewItemHist_prix"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="sans-serif-medium"
             android:gravity="center_horizontal"
             android:text="30 €"
             android:textSize="18sp" />
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/textViewItemHist_temps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:text="il y a 0 jours"
-            android:textSize="15sp" />
 
         <View
             android:id="@+id/textViewItemHist_color"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="30dp"
             android:background="#C92525" />
 
         <Space

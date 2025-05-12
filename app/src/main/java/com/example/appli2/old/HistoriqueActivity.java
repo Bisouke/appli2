@@ -26,6 +26,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+// UNDO COMMENTS SECTION BEFORE USE
+
 public class HistoriqueActivity extends AppCompatActivity {
 
     private ListView listViewHistorique;
@@ -44,7 +46,7 @@ public class HistoriqueActivity extends AppCompatActivity {
             /******************************************************
              *                   O N C R E A T E                  *
              ******************************************************/
-
+/*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -74,13 +76,13 @@ public class HistoriqueActivity extends AppCompatActivity {
 
 
 
-
+*/
 
                         /******************************************************
                         *                   L I S T E N E R S                 *
                         *******************************************************/
 
-
+/*
         buttonSupprimer.setOnClickListener(v -> {
             deleteGasData();
         });
@@ -111,11 +113,13 @@ public class HistoriqueActivity extends AppCompatActivity {
 
     }
 
+ */
+
             /******************************************************
             *           I N S T A N C E     M E T H O D           *
             *******************************************************/
 
-
+/*
     public void refreshHistoryList()
     {
         // update gas data collection from stored file
@@ -170,5 +174,6 @@ public class HistoriqueActivity extends AppCompatActivity {
 
     }
 
+*/
 
 }

@@ -53,8 +53,8 @@ public class ActivityAccueil extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(ActivityAccueil.this, ActivityStatistique.class);
-                startActivity(intent);
+                // Intent intent = new Intent(ActivityAccueil.this, ActivityStatistique.class);
+                // startActivity(intent);
             }
         });
 

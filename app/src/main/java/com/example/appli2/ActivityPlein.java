@@ -212,7 +212,7 @@ public class ActivityPlein extends AppCompatActivity {
                         break;
                     case ("SP98"):
                         spinnerCarburant.setBackgroundColor(
-                                Color.parseColor("#44ba56")); // SP98 green
+                                Color.parseColor("#2f823c")); // SP98 green
                         break;
                     case ("E85"):
                         spinnerCarburant.setBackgroundColor(

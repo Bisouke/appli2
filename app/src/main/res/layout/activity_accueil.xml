@@ -51,36 +51,52 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             android:orientation="vertical">
 
             <Button
                 android:id="@+id/button_ajout_carburant"
                 android:layout_width="220dp"
                 android:layout_height="100dp"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="#4169E1"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#1c41b0"
                 android:text="Ajouter un plein"
-                android:textSize="18dp" />
+                android:textSize="18dp"
+                app:icon="@drawable/gas_station"
+                app:iconSize="20dp" />
 
             <Button
                 android:id="@+id/button_historique"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="#5678CC"
+                android:layout_marginTop="8dp"
+                android:backgroundTint=" #2251dd "
                 android:text="Mon historique"
-                android:textSize="18dp" />
+                android:textSize="18dp"
+                app:icon="@drawable/history"
+                app:iconSize="24dp" />
 
             <Button
                 android:id="@+id/button_statistiques"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="#789EEA"
-                android:enabled="false"
+                android:layout_marginTop="8dp"
+                android:backgroundTint=" #4f74e3 "
                 android:text="Statistiques"
-                android:textSize="18dp" />
+                android:textSize="18dp"
+                app:icon="@drawable/graph"
+                app:iconSize="22dp" />
+
+            <Button
+                android:id="@+id/button_statistiques2"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint=" #7b97ea "
+                android:text="Mes véhicules"
+                android:textSize="18dp"
+                app:icon="@drawable/car"
+                app:iconSize="32dp" />
 
         </LinearLayout>
 

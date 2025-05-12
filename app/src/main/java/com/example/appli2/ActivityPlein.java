@@ -250,11 +250,11 @@ public class ActivityPlein extends AppCompatActivity {
         }
         catch (NumberFormatException e)
         {
-            textViewVolumeCarburant.setText(String.format("0,0 litres", volume));
+            textViewVolumeCarburant.setText(String.format("0 litres", volume));
             return;
         }
 
-        textViewVolumeCarburant.setText(String.format("%.1f litres", volume));
+        textViewVolumeCarburant.setText(String.format("%d litres", Math.round(volume)));
     }
 
     public void clickAjouterPlein()

@@ -16,7 +16,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="90sp"
             android:layout_marginTop="100dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
@@ -26,14 +26,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/kalam_regular"
-                android:text="Car Stat"
-                android:textSize="50dp" />
+                android:text="CarStat"
+                android:textSize="65sp" />
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="15sp"
                 app:srcCompat="@drawable/gas_pump" />
 
         </LinearLayout>
@@ -70,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="8dp"
-                android:backgroundTint=" #2251dd "
+                android:backgroundTint="#2251dd"
                 android:text="Mon historique"
                 android:textSize="18dp"
                 app:icon="@drawable/history"
@@ -81,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="8dp"
-                android:backgroundTint=" #4f74e3 "
+                android:backgroundTint="#4f74e3"
                 android:text="Statistiques"
                 android:textSize="18dp"
                 app:icon="@drawable/graph"
@@ -92,7 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="8dp"
-                android:backgroundTint=" #7b97ea "
+                android:backgroundTint="#7b97ea"
                 android:text="Mes véhicules"
                 android:textSize="18dp"
                 app:icon="@drawable/car"
@@ -101,4 +102,13 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="version 0.1"
+        app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

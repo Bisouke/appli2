@@ -19,8 +19,7 @@
             android:id="@+id/textView19"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
             android:background="#95B7FD"
             android:gravity="center_horizontal|center_vertical"
             android:text="Ajout de carburant"
@@ -35,7 +34,7 @@
                 android:id="@+id/layout_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
@@ -49,14 +48,11 @@
                     android:maxLength="10"
                     android:textSize="22sp" />
 
-                <Space
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content" />
-
                 <EditText
                     android:id="@+id/editTextHeure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
                     android:ems="4"
                     android:gravity="center_horizontal"
                     android:hint="Heure"
@@ -67,16 +63,37 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20sp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:text="Véhicule :"
+                    android:textSize="20sp" />
+
+                <Spinner
+                    android:id="@+id/spinner2"
+                    android:layout_width="162dp"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#FFFFFF"
+                    android:textAlignment="center" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/layoutKM"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
                 android:orientation="horizontal">
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
 
                 <EditText
                     android:id="@+id/editTextKm"
@@ -96,31 +113,29 @@
                     android:text="KM"
                     android:textSize="20sp" />
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="40sp"
+                android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView3"
-                    android:layout_width="162dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="Carburant"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:text="Carburant :"
                     android:textSize="20sp" />
 
                 <Spinner
                     android:id="@+id/spinnerCarburant"
                     android:layout_width="162dp"
                     android:layout_height="56dp"
+                    android:layout_marginTop="10dp"
                     android:textAlignment="center" />
 
             </LinearLayout>
@@ -129,7 +144,7 @@
                 android:id="@+id/layoutPrixLitre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
@@ -149,7 +164,6 @@
                     android:layout_width="40sp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20sp"
-                    android:gravity="center_horizontal|center_vertical"
                     android:text="€/L"
                     android:textSize="22sp" />
 
@@ -179,7 +193,6 @@
                     android:layout_width="40sp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20sp"
-                    android:gravity="center_horizontal|center_vertical"
                     android:text="€"
                     android:textSize="22sp" />
 
@@ -188,7 +201,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
@@ -196,17 +209,18 @@
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
                     android:gravity="center_horizontal"
-                    android:text="Volume de carburant :"
-                    android:textSize="20sp" />
+                    android:text="Plein de"
+                    android:textSize="22sp" />
 
                 <TextView
                     android:id="@+id/textViewVolumeCarburant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10sp"
-                    android:layout_weight="0"
-                    android:text="0.0 litres"
+                    android:layout_marginLeft="7sp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="0 litres"
                     android:textSize="22sp" />
 
             </LinearLayout>
@@ -214,11 +228,12 @@
 
         <Button
             android:id="@+id/buttonAjouterPlein"
-            android:layout_width="150sp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50sp"
+            android:layout_width="160sp"
+            android:layout_height="90sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40sp"
             android:backgroundTint="#789EEA"
+            android:gravity="center"
             android:text="Ajouter"
             android:textSize="16sp" />
 

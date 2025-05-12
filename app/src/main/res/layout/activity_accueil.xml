@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/dosis_regular"
             android:gravity="center_horizontal"
-            android:text="Suivez simplement vos dépenses"
+            android:text="Suivez votre consommation"
             android:textSize="24sp" />
 
         <LinearLayout
@@ -89,7 +89,7 @@
                 app:iconSize="22dp" />
 
             <Button
-                android:id="@+id/button_statistiques2"
+                android:id="@+id/button_vehicules"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="8dp"

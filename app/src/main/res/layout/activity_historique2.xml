@@ -97,8 +97,8 @@
                 android:id="@+id/linearLayoutHistorique"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="15sp"
                 android:orientation="vertical">
 
                 <Space

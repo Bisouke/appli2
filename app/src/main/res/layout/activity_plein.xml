@@ -23,7 +23,7 @@
             android:background="#95B7FD"
             android:fontFamily="sans-serif-medium"
             android:gravity="center_horizontal|center_vertical"
-            android:text="Ajout de carburant"
+            android:text="Nouveau plein"
             android:textSize="24sp" />
 
         <LinearLayout

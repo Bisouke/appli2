@@ -1,6 +1,7 @@
 package com.example.appli2;
 
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -264,29 +265,32 @@ public class ActivityHistorique2 extends AppCompatActivity {
             }
 
             // FUEL COLOR
+
+            GradientDrawable drawable = new GradientDrawable();
+            drawable.setShape(GradientDrawable.RECTANGLE);
+            drawable.setCornerRadius(32); // Rayon d’arrondi en pixels
+
             switch (gasdata.getFuel())
             {
                 case "SP98":
-                    textViewItemHist_color.setBackgroundColor(
-                            Color.parseColor("#2f823c")); // SP98 green
+                    drawable.setColor(Color.parseColor("#2f823c")); // SP98 green
                     break;
 
                 case "SP95":
                 case "SP95 E10":
-                    textViewItemHist_color.setBackgroundColor(
-                            Color.parseColor("#44ba56")); // SP95 and SP95E10 green
+                    drawable.setColor(Color.parseColor("#44ba56")); // SP95 and SP95E10 green
                     break;
 
                 case "E85":
-                    textViewItemHist_color.setBackgroundColor(
-                            Color.parseColor("#0170dd")); // E85 blue
+                    drawable.setColor(Color.parseColor("#0170dd")); // E85 blue
                     break;
 
                 case "DIESEL":
-                    textViewItemHist_color.setBackgroundColor(
-                            Color.parseColor("#fedc01")); // Diesel yellow
+                    drawable.setColor(Color.parseColor("#fedc01")); // Diesel yellow
                     break;
             }
+            textViewItemHist_color.setBackground(drawable);
+
 
             // add the view to the linear layout
             linearLayoutHistorique.addView(inflated_view);

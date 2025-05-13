@@ -53,11 +53,11 @@ public class ActivityHistorique2 extends AppCompatActivity {
         });
 
         // Toggle button
-        toggleButton_tri = findViewById(R.id.toggleButton_tri);
+        // toggleButton_tri = findViewById(R.id.toggleButton_tri);
         // Button
-        buttonSupprimer = findViewById(R.id.buttonSupprimerHistorique);
+        // buttonSupprimer = findViewById(R.id.buttonSupprimerHistorique);
         // TextView
-        textViewNbPlein = findViewById(R.id.textViewNbPlein);
+        // textViewNbPlein = findViewById(R.id.textViewNbPlein);
         // LinearLayout
         linearLayoutHistorique = findViewById(R.id.linearLayoutHistorique);
 
@@ -65,12 +65,12 @@ public class ActivityHistorique2 extends AppCompatActivity {
         gasdataCollec = new GasDataCollection(this);
 
         // affiche le nombre de plein enregistrés
-        textViewNbPlein.setText(String.valueOf(gasdataCollec.getGasDataSize()));
+        // textViewNbPlein.setText(String.valueOf(gasdataCollec.getGasDataSize()));
 
         // refreshHistoryList();
 
 
-        inflateGasDataViews();
+        // inflateGasDataViews();
 
 
                         /******************************************************
@@ -78,43 +78,43 @@ public class ActivityHistorique2 extends AppCompatActivity {
                         *******************************************************/
 
 
-        buttonSupprimer.setOnClickListener(new View.OnClickListener()   {
-               @Override
-               public void onClick(View v)
-               {
-               }
-           });
+//        buttonSupprimer.setOnClickListener(new View.OnClickListener()   {
+//               @Override
+//               public void onClick(View v)
+//               {
+//               }
+//           });
 
 
-        toggleButton_tri.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                // get button state
-                boolean isSelected = toggleButton_tri.isSelected();
-
-                // change background ressrouce
-                if (isSelected)
-                {
-                    toggleButton_tri.setBackgroundResource(R.drawable.down_arrow);
-                }
-                else
-                {
-                    toggleButton_tri.setBackgroundResource(R.drawable.up_arrow);
-                }
-
-                // reverse button state for next click
-                toggleButton_tri.setSelected(!isSelected);
-
-                // update gas data list view
-                inflateGasDataViews();
-
-                // desselect gas data
-                selected_view = null;
-                buttonSupprimer.setEnabled(false);
-
-            }
-        });
+//        toggleButton_tri.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                // get button state
+//                boolean isSelected = toggleButton_tri.isSelected();
+//
+//                // change background ressrouce
+//                if (isSelected)
+//                {
+//                    toggleButton_tri.setBackgroundResource(R.drawable.down_arrow);
+//                }
+//                else
+//                {
+//                    toggleButton_tri.setBackgroundResource(R.drawable.up_arrow);
+//                }
+//
+//                // reverse button state for next click
+//                toggleButton_tri.setSelected(!isSelected);
+//
+//                // update gas data list view
+//                inflateGasDataViews();
+//
+//                // desselect gas data
+//                selected_view = null;
+//                buttonSupprimer.setEnabled(false);
+//
+//            }
+//        });
 
 
     }

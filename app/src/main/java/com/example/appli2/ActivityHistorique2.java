@@ -70,7 +70,7 @@ public class ActivityHistorique2 extends AppCompatActivity {
         // refreshHistoryList();
 
 
-        // inflateGasDataViews();
+         inflateGasDataViews();
 
 
                         /******************************************************
@@ -154,7 +154,8 @@ public class ActivityHistorique2 extends AppCompatActivity {
                     // desselect
                     selected_view = null;
                     // disable delete button
-                    buttonSupprimer.setEnabled(false);
+                    // --- WARNING DEBUG MODIFICATION ---
+                    // buttonSupprimer.setEnabled(false);
                     // skip
                     return;
                 }
@@ -169,7 +170,8 @@ public class ActivityHistorique2 extends AppCompatActivity {
                     selected_view = v;
 
                     // enable delete button
-                    buttonSupprimer.setEnabled(true);
+                    // --- WARNING DEBUG MODIFICATION ---
+                    // buttonSupprimer.setEnabled(true);
                 }
 
             }
@@ -178,8 +180,11 @@ public class ActivityHistorique2 extends AppCompatActivity {
         // get the gas data list from GasDataCollection class
         List<GasData> gasDataList;
 
+        // --- WARNING DEBUG MODIFICATION ---
+        // toggleButton_tri.isSelected();
+
         // get gas data list accordingly to user sorting selection
-        if (toggleButton_tri.isSelected())
+        if (true)
             gasDataList = gasdataCollec.getAllGasData(GasDataCollection.OLDEST_TOP);
         else
             gasDataList = gasdataCollec.getAllGasData(GasDataCollection.EARLIEST_TOP);

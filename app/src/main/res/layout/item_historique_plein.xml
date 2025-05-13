@@ -21,8 +21,7 @@
         <LinearLayout
             android:layout_width="150sp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
             android:gravity="left"
             android:orientation="vertical">
 
@@ -71,6 +70,7 @@
             android:layout_height="20dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="30dp"
+            android:layout_marginRight="15dp"
             android:background="#C92525" />
 
     </LinearLayout>

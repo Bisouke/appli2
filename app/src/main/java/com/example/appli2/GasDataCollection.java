@@ -59,6 +59,12 @@ public class GasDataCollection {
         saveGasDataFile();
     }
 
+    public void removeGasData(GasData arg_gasdata)
+    {
+        allGasData.remove(arg_gasdata);
+        saveGasDataFile();
+    }
+
     public List<GasData> getAllGasData(int arg_order)
     {
 

@@ -1,8 +1,12 @@
 package com.example.appli2;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
@@ -26,6 +30,7 @@ import java.util.List;
 public class ActivityHistorique2 extends AppCompatActivity {
 
     private ImageButton imgButtonSupprimer, imgButtonFiltre, imgButtonTri;
+    private boolean triFlag = true;
     private TextView textViewFiltresLn1, textViewFiltresLn2;
     private TextView textViewPleinsLn1, textViewPleinsLn2;
     private LinearLayout linearLayoutHistorique;
@@ -53,10 +58,8 @@ public class ActivityHistorique2 extends AppCompatActivity {
 
         // imgButton delete
         imgButtonSupprimer = findViewById(R.id.imageButtonDelete);
-
         // imgButton filtre
         imgButtonFiltre = findViewById(R.id.imageButtonFiltre);
-
         // imgButton tri
         imgButtonTri = findViewById(R.id.imageButtonTri);
 
@@ -87,43 +90,83 @@ public class ActivityHistorique2 extends AppCompatActivity {
                     *******************************************************/
 
 
-//        buttonSupprimer.setOnClickListener(new View.OnClickListener()   {
-//               @Override
-//               public void onClick(View v)
-//               {
-//               }
-//           });
+        imgButtonSupprimer.setOnClickListener(new View.OnClickListener()   {
+
+               @Override
+               public void onClick(View v)
+               {
+                   if(selected_view == null)
+                   {
+                       // do nothing
+                       Log.d("DEBUG", "gas data deletion disabled");
+                   }
+                   else
+                   {
+                       // delete the selected view & gas data associated
+                       // ATTENTION cause un bug si getTag(); est effectué depuis l'alertDialog
+                       GasData gasdataselected = (GasData) selected_view.getTag();
+
+                       // Créer et afficher la boîte de dialogue de confirmation
+                       new AlertDialog.Builder(ActivityHistorique2.this)
+                               .setTitle("Confirmation")
+                               .setMessage("Voulez-vous vraiment supprimer ce plein ?")
+                               .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                                   public void onClick(DialogInterface dialog, int which) {
+
+                                       // Action de suppression ici
+                                       gasdataCollec.removeGasData(gasdataselected);
+                                       inflateGasDataViews();
+
+                                   }
+                               })
+                               .setNegativeButton("Non", null) // Ferme juste la boîte de dialogue
+                               .show();
+
+                       // desselect view
+                       selected_view = null;
+                       // grey delete button
+                       imgButtonSupprimer.setAlpha(0.5f);
+
+                   }
 
 
-//        toggleButton_tri.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                // get button state
-//                boolean isSelected = toggleButton_tri.isSelected();
-//
-//                // change background ressrouce
-//                if (isSelected)
-//                {
-//                    toggleButton_tri.setBackgroundResource(R.drawable.down_arrow);
-//                }
-//                else
-//                {
-//                    toggleButton_tri.setBackgroundResource(R.drawable.up_arrow);
-//                }
-//
-//                // reverse button state for next click
-//                toggleButton_tri.setSelected(!isSelected);
-//
-//                // update gas data list view
-//                inflateGasDataViews();
-//
-//                // desselect gas data
-//                selected_view = null;
-//                buttonSupprimer.setEnabled(false);
-//
-//            }
-//        });
+               }
+           });
+
+
+        imgButtonTri.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+
+                // reserve flag
+                triFlag = !triFlag;
+
+                // change button img according to his flag
+                if (triFlag)
+                {
+                    imgButtonTri.setImageResource(R.drawable.up_arrow);
+                }
+                else
+                {
+                    imgButtonTri.setImageResource(R.drawable.down_arrow);
+                }
+
+
+                // update gas data list view
+                inflateGasDataViews();
+
+                // desselect gas data
+                selected_view = null;
+                // selection is erased
+
+                // grey the delete button
+                imgButtonSupprimer.setAlpha(0.5f);
+
+
+
+            }
+        });
 
 
     }
@@ -147,12 +190,12 @@ public class ActivityHistorique2 extends AppCompatActivity {
             public void onClick(View v)
             {
 
-                // SELECTION LOGIC for gas data view
+                // SELECTION LOGIC
 
                 // remove background color for each gas data view
                 for (View view : inflated_view_list)
                 {
-                    // alpha to 0 : invisible color
+                    // alpha to 0 : invisible background color
                     view.setBackgroundColor(Color.argb(0,149,183,253));
                 }
 
@@ -162,11 +205,8 @@ public class ActivityHistorique2 extends AppCompatActivity {
                 {
                     // desselect
                     selected_view = null;
-                    // disable delete button
-                    // --- WARNING DEBUG MODIFICATION ---
-                    // buttonSupprimer.setEnabled(false);
-                    // skip
-                    return;
+                    // grey the delete button
+                    imgButtonSupprimer.setAlpha(0.5f);
                 }
 
                 else
@@ -177,26 +217,24 @@ public class ActivityHistorique2 extends AppCompatActivity {
 
                     // change selected view
                     selected_view = v;
-
-                    // enable delete button
-                    // --- WARNING DEBUG MODIFICATION ---
-                    // buttonSupprimer.setEnabled(true);
+                    // color delete button black
+                    imgButtonSupprimer.setAlpha(1f);
                 }
 
             }
         };
 
+
+
         // get the gas data list from GasDataCollection class
         List<GasData> gasDataList;
 
-        // --- WARNING DEBUG MODIFICATION ---
-        // toggleButton_tri.isSelected();
-
         // get gas data list accordingly to user sorting selection
-        if (true)
-            gasDataList = gasdataCollec.getAllGasData(GasDataCollection.OLDEST_TOP);
-        else
+        if (triFlag)
             gasDataList = gasdataCollec.getAllGasData(GasDataCollection.EARLIEST_TOP);
+        else
+            gasDataList = gasdataCollec.getAllGasData(GasDataCollection.OLDEST_TOP);
+
 
         // create the inflater
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -211,6 +249,9 @@ public class ActivityHistorique2 extends AppCompatActivity {
             // inflate the view "item_historique_plein"
             View inflated_view = inflater.inflate(R.layout.item_historique_plein,
                     linearLayoutHistorique, false);
+
+            // link the inflated view with the GasData object for further deletion
+            inflated_view.setTag(gasdata);
 
             // add the view to the list view
             inflated_view_list.add(inflated_view);
@@ -280,6 +321,7 @@ public class ActivityHistorique2 extends AppCompatActivity {
 
             // FUEL COLOR
 
+            // arrondi Color View carburant
             GradientDrawable drawable = new GradientDrawable();
             drawable.setShape(GradientDrawable.RECTANGLE);
             drawable.setCornerRadius(32); // Rayon d’arrondi en pixels

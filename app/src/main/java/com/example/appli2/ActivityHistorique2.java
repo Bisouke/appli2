@@ -5,10 +5,9 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
@@ -26,9 +25,9 @@ import java.util.List;
 
 public class ActivityHistorique2 extends AppCompatActivity {
 
-    private Button buttonSupprimer;
-    private TextView textViewNbPlein;
-    private ToggleButton toggleButton_tri;
+    private ImageButton imgButtonSupprimer, imgButtonFiltre, imgButtonTri;
+    private TextView textViewFiltresLn1, textViewFiltresLn2;
+    private TextView textViewPleinsLn1, textViewPleinsLn2;
     private LinearLayout linearLayoutHistorique;
     private GasDataCollection gasdataCollec;
     @Nullable
@@ -52,30 +51,40 @@ public class ActivityHistorique2 extends AppCompatActivity {
             return insets;
         });
 
-        // Toggle button
-        // toggleButton_tri = findViewById(R.id.toggleButton_tri);
-        // Button
-        // buttonSupprimer = findViewById(R.id.buttonSupprimerHistorique);
-        // TextView
-        // textViewNbPlein = findViewById(R.id.textViewNbPlein);
+        // imgButton delete
+        imgButtonSupprimer = findViewById(R.id.imageButtonDelete);
+
+        // imgButton filtre
+        imgButtonFiltre = findViewById(R.id.imageButtonFiltre);
+
+        // imgButton tri
+        imgButtonTri = findViewById(R.id.imageButtonTri);
+
+        // TextView - Filtres
+        textViewFiltresLn1 = findViewById(R.id.textViewFiltresLn1);
+        textViewFiltresLn2 = findViewById(R.id.textViewFiltresLn2);
+
+        // TextView - Pleins
+        textViewPleinsLn1 = findViewById(R.id.textViewPleinsLn1);
+        textViewPleinsLn2 = findViewById(R.id.textViewPleinsLn2);
+
         // LinearLayout
         linearLayoutHistorique = findViewById(R.id.linearLayoutHistorique);
+
 
         // for gas data database access
         gasdataCollec = new GasDataCollection(this);
 
         // affiche le nombre de plein enregistrés
-        // textViewNbPlein.setText(String.valueOf(gasdataCollec.getGasDataSize()));
+        textViewPleinsLn1.setText(gasdataCollec.getGasDataSize() + " pleins");
 
-        // refreshHistoryList();
-
-
-         inflateGasDataViews();
+        // get and show all gas data from file
+        inflateGasDataViews();
 
 
-                        /******************************************************
-                        *                   L I S T E N E R S                 *
-                        *******************************************************/
+                    /******************************************************
+                    *                   L I S T E N E R S                 *
+                    *******************************************************/
 
 
 //        buttonSupprimer.setOnClickListener(new View.OnClickListener()   {

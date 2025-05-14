@@ -36,68 +36,71 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/imageButtonDelete"
                 android:layout_width="70sp"
                 android:layout_height="50sp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="20sp"
                 android:alpha="0.5"
                 android:background="@null"
                 android:scaleType="centerInside"
                 app:srcCompat="@drawable/trash" />
 
             <ImageButton
-                android:id="@+id/imageButton2"
+                android:id="@+id/imageButtonFiltre"
                 android:layout_width="65sp"
                 android:layout_height="45sp"
-                android:layout_marginLeft="30sp"
+                android:layout_marginLeft="20sp"
+                android:alpha="0.5"
                 android:background="@null"
-                android:scaleType="centerInside"
+                android:scaleType="fitEnd"
                 app:srcCompat="@drawable/filter" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5sp"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView23"
+                    android:id="@+id/textViewFiltresLn1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3 filtres" />
+                    android:text="0 filtres" />
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/textViewFiltresLn2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="actif(s)" />
+                    android:text="actifs" />
 
             </LinearLayout>
 
             <ImageButton
-                android:id="@+id/imageButton4"
+                android:id="@+id/imageButtonTri"
                 android:layout_width="65sp"
                 android:layout_height="45sp"
                 android:layout_marginLeft="10sp"
                 android:background="@null"
-                android:scaleType="centerInside"
+                android:scaleType="fitEnd"
                 app:srcCompat="@drawable/up_arrow" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5sp"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/textViewPleinsLn1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="34 pleins" />
+                    android:text="0 pleins" />
 
                 <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="match_parent"
+                    android:id="@+id/textViewPleinsLn2"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="affichés" />
 

@@ -280,6 +280,7 @@ public class ActivityPlein extends AppCompatActivity {
             // show error message to the user
             Toast.makeText(this, "Date incorrect", Toast.LENGTH_SHORT).show();
             editTextDate.startAnimation(shake);
+            vibrator.vibrate(300);
             return;
         }
 
@@ -294,6 +295,7 @@ public class ActivityPlein extends AppCompatActivity {
             // show error message to the user
             Toast.makeText(this, "Heure incorrect", Toast.LENGTH_SHORT).show();
             editTextHeure.startAnimation(shake);
+            vibrator.vibrate(300);
             return;
         }
 
@@ -306,6 +308,7 @@ public class ActivityPlein extends AppCompatActivity {
         {
             editTextDate.startAnimation(shake);
             editTextHeure.startAnimation(shake);
+            vibrator.vibrate(300);
             Toast.makeText(this, "Date et heure dans le futur",
                     Toast.LENGTH_SHORT).show();
 
@@ -323,6 +326,7 @@ public class ActivityPlein extends AppCompatActivity {
             // show error message to the user
             Toast.makeText(this, "Kilométrage incorrect", Toast.LENGTH_SHORT).show();
             layoutKM.startAnimation(shake);
+            vibrator.vibrate(300);
             return;
         }
 
@@ -345,6 +349,7 @@ public class ActivityPlein extends AppCompatActivity {
             // show error message to the user
             Toast.makeText(this, "Prix/L incorrect", Toast.LENGTH_SHORT).show();
             layoutPrixLitre.startAnimation(shake);
+            vibrator.vibrate(300);
             return;
         }
 
@@ -362,6 +367,7 @@ public class ActivityPlein extends AppCompatActivity {
             // show error message to the user
             Toast.makeText(this, "Prix total incorrect", Toast.LENGTH_SHORT).show();
             layoutPrixTotal.startAnimation(shake);
+            vibrator.vibrate(300);
             return;
         }
 
@@ -381,7 +387,6 @@ public class ActivityPlein extends AppCompatActivity {
         // save new gas data
         gasdatacollection.addGasData(gasdata);
 
-        vibrator.vibrate(300);
         Toast.makeText(this, "Plein sauvegardé", Toast.LENGTH_LONG).show();
 
         finish();   // exit the activity

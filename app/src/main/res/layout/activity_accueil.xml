@@ -96,6 +96,7 @@
                 android:backgroundTint="#7b97ea"
                 android:text="Mes véhicules"
                 android:textSize="18dp"
+                android:visibility="invisible"
                 app:icon="@drawable/car"
                 app:iconSize="32dp" />
 

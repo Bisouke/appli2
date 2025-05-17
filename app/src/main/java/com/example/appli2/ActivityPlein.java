@@ -1,8 +1,10 @@
 package com.example.appli2;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.Editable;
@@ -33,6 +35,8 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
+import android.graphics.drawable.Drawable;
+
 // BUG : CRASH SANS LE FICHIER AllGasData.json
 // Attention, lorsque le fichier allGasData est supprimé, cela fait planter l'activité, il n'est
 // plus possible d'ajouter un plein, en plus de cela l'activité crash de tel façon qu'il est
@@ -50,6 +54,8 @@ public class ActivityPlein extends AppCompatActivity {
     private LinearLayout layoutKM, layoutPrixLitre, layoutPrixTotal;
     private Animation shake;
     private SharedPreferences sharedPreferences;
+
+    private LinearLayout mainLayout;
 
     private int mavariabledetestgit;
     private final List<String> list_carburant = Arrays.asList("SP98", "SP95", "SP95 E10", "E85", "DIESEL");
@@ -94,6 +100,7 @@ public class ActivityPlein extends AppCompatActivity {
         layoutKM = findViewById(R.id.layoutKM);
         layoutPrixLitre = findViewById(R.id.layoutPrixLitre);
         layoutPrixTotal = findViewById(R.id.layoutPrixTotal);
+        mainLayout = findViewById(R.id.mainLayout);
 
         gasdatacollection = new GasDataCollection(this);
 
@@ -102,6 +109,8 @@ public class ActivityPlein extends AppCompatActivity {
 
         // shared preferences
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+
+        Context context = this;
 //
         // animation
         shake = new TranslateAnimation(0, 35, 0, 0); // secousse de 10px à gauche et à droite
@@ -199,23 +208,23 @@ public class ActivityPlein extends AppCompatActivity {
                 // change the background color of the spinner accordingly to the selected fuel
                 switch (selectedItemStr) {
                     case ("DIESEL"):
-                        spinnerCarburant.setBackgroundColor(
+                        buttonAjouterPlein.setBackgroundColor(
                                 Color.parseColor("#fedc01")); // Diesel yellow
                         break;
                     case ("SP95 E10"):
-                        spinnerCarburant.setBackgroundColor(
+                        buttonAjouterPlein.setBackgroundColor(
                                 Color.parseColor("#44ba56")); // SP95E10 green
                         break;
                     case ("SP95"):
-                        spinnerCarburant.setBackgroundColor(
+                        buttonAjouterPlein.setBackgroundColor(
                                 Color.parseColor("#44ba56")); // SP95 green
                         break;
                     case ("SP98"):
-                        spinnerCarburant.setBackgroundColor(
+                        buttonAjouterPlein.setBackgroundColor(
                                 Color.parseColor("#2f823c")); // SP98 green
                         break;
                     case ("E85"):
-                        spinnerCarburant.setBackgroundColor(
+                        buttonAjouterPlein.setBackgroundColor(
                                 Color.parseColor("#0170dd")); // E85 blue
                         break;
                 }

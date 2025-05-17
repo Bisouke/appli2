@@ -6,12 +6,14 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
@@ -24,6 +26,8 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+
+import android.content.Context;
 
 // BUG : crash à l'ouverture de l'activité avec AllGasData.json vide.
 
@@ -38,6 +42,8 @@ public class ActivityHistorique2 extends AppCompatActivity {
     @Nullable
     private View selected_view;
     private List<View> inflated_view_list; // containing each inflated views
+
+    private Vibrator vibrator;
 
 
             /******************************************************
@@ -78,6 +84,9 @@ public class ActivityHistorique2 extends AppCompatActivity {
         // for gas data database access
         gasdataCollec = new GasDataCollection(this);
 
+        // vibrator
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+
         // affiche le nombre de plein enregistrés
         textViewPleinsLn1.setText(gasdataCollec.getGasDataSize() + " pleins");
 
@@ -95,41 +104,7 @@ public class ActivityHistorique2 extends AppCompatActivity {
                @Override
                public void onClick(View v)
                {
-                   if(selected_view == null)
-                   {
-                       // do nothing
-                       Log.d("DEBUG", "gas data deletion disabled");
-                   }
-                   else
-                   {
-                       // delete the selected view & gas data associated
-                       // ATTENTION cause un bug si getTag(); est effectué depuis l'alertDialog
-                       GasData gasdataselected = (GasData) selected_view.getTag();
-
-                       // Créer et afficher la boîte de dialogue de confirmation
-                       new AlertDialog.Builder(ActivityHistorique2.this)
-                               .setTitle("Confirmation")
-                               .setMessage("Voulez-vous vraiment supprimer ce plein ?")
-                               .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
-                                   public void onClick(DialogInterface dialog, int which) {
-
-                                       // Action de suppression ici
-                                       gasdataCollec.removeGasData(gasdataselected);
-                                       inflateGasDataViews();
-
-                                   }
-                               })
-                               .setNegativeButton("Non", null) // Ferme juste la boîte de dialogue
-                               .show();
-
-                       // desselect view
-                       selected_view = null;
-                       // grey delete button
-                       imgButtonSupprimer.setAlpha(0.5f);
-
-                   }
-
-
+                   deleteSelectedGasData();
                }
            });
 
@@ -353,6 +328,51 @@ public class ActivityHistorique2 extends AppCompatActivity {
 
             // set click listener
             inflated_view.setOnClickListener(listener);
+
+        }
+    }
+
+    void deleteSelectedGasData()
+    {
+
+        Context activityCtxt = this;
+
+        if(selected_view == null)
+        {
+            // do nothing
+            return;
+        }
+        else
+        {
+            // delete the selected view & gas data associated
+            // ATTENTION cause un bug si getTag(); est effectué depuis l'alertDialog
+            GasData gasdataselected = (GasData) selected_view.getTag();
+
+            // Créer et afficher la boîte de dialogue de confirmation
+            new AlertDialog.Builder(ActivityHistorique2.this)
+                    .setTitle("Confirmation")
+                    .setMessage("Voulez-vous vraiment supprimer ce plein ?")
+                    .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+
+                            // Action de suppression ici
+                            gasdataCollec.removeGasData(gasdataselected);
+                            inflateGasDataViews();
+                            // show a toast to the user
+                            Toast.makeText(activityCtxt, "Plein supprimé", Toast.LENGTH_SHORT).show();
+                            // vibration courte du téléphone
+                            vibrator.vibrate(200);
+
+                        }
+                    })
+                    .setNegativeButton("Non", null) // Ferme juste la boîte de dialogue
+                    .show();
+
+            // desselect view
+            selected_view = null;
+            // grey delete button
+            imgButtonSupprimer.setAlpha(0.5f);
 
         }
     }

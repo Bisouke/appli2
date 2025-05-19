@@ -15,15 +15,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView_statistiques"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="40dp"
+            android:layout_height="60sp"
             android:background="#95B7FD"
-            android:gravity="center_horizontal"
-            android:text="Statistiques"
-            android:textSize="28sp" />
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="Statistiques"
+                android:textColor="#000000"
+                android:textSize="28sp" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_marginLeft="20sp"
+                app:srcCompat="@drawable/graph" />
+        </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -44,7 +58,8 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="20dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -167,7 +182,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_marginTop="20dp"
-                    android:background="#AAAAAA" />
+                    android:background="#AAAAAA"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/textView7"
@@ -184,14 +200,6 @@
                     android:layout_height="250dp">
 
                 </com.github.mikephil.charting.charts.BarChart>
-
-                <Switch
-                    android:id="@+id/switch1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Afficher le détail"
-                    android:textSize="14sp" />
 
                 <View
                     android:id="@+id/view4"

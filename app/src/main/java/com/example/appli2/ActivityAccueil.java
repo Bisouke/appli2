@@ -60,9 +60,9 @@ public class ActivityAccueil extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                // Intent intent = new Intent(ActivityAccueil.this, ActivityStatistique.class);
-                // startActivity(intent);
-                Toast.makeText(context, "En développement", Toast.LENGTH_SHORT).show();
+                 Intent intent = new Intent(ActivityAccueil.this, ActivityStatistique.class);
+                 startActivity(intent);
+//                 Toast.makeText(context, "En développement", Toast.LENGTH_SHORT).show();
             }
         });
 

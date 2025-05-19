@@ -184,6 +184,48 @@ public class ActivityStatistique extends AppCompatActivity {
 
 
         /*******************************************************
+         *              L I N E         C H A R T              *
+         *******************************************************/
+
+        LineChart lineChart;
+
+            lineChart = findViewById(R.id.lineChart);
+
+            // Créer une liste de points (x, y)
+            ArrayList<Entry> entries3 = new ArrayList<>();
+            entries3.add(new Entry(0f, 0));
+            entries3.add(new Entry(0.01f, 2));
+            entries3.add(new Entry(1f, 2));
+            entries3.add(new Entry(1.01f, 4));
+            entries3.add(new Entry(2f, 4));
+
+            // Créer un LineDataSet avec ces points
+            LineDataSet dataSet3 = new LineDataSet(entries3, "Données Exemple");
+            dataSet3.setColor(0xFF416BE9);
+            dataSet3.setValueTextSize(12f);
+            dataSet3.setValueTextColor(getResources().getColor(R.color.black));
+            dataSet3.setLineWidth(2f);
+
+            // Appliquer les données au graphique
+            LineData lineData = new LineData(dataSet3);
+            lineChart.setData(lineData);
+
+            // Enlever la description par défaut
+            Description description = new Description();
+            description.setText("");
+
+            lineChart.setDescription(description);
+
+
+            lineChart.getXAxis().setDrawGridLines(false);
+            lineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+            lineChart.getAxisLeft().setEnabled(false);
+            lineChart.getAxisRight().setEnabled(false);
+            // Rafraîchir le graphique
+            lineChart.invalidate();
+
+
+        /*******************************************************
          *                 B A R      C H A R T                *
          *******************************************************/
 
@@ -301,48 +343,6 @@ public class ActivityStatistique extends AppCompatActivity {
 //        pieChart.getDescription().setEnabled(false); // Enlever description par défaut
 //        pieChart.animateY(800); // Animation
 //        pieChart.getLegend().setTextSize(14f);
-
-
-        /*******************************************************
-         *              L I N E         C H A R T              *
-         *******************************************************/
-
-//        LineChart lineChart;
-//
-//            lineChart = findViewById(R.id.lineChart);
-//
-//            // Créer une liste de points (x, y)
-//            ArrayList<Entry> entries3 = new ArrayList<>();
-//            entries3.add(new Entry(0, 2));
-//            entries3.add(new Entry(1, 4));
-//            entries3.add(new Entry(2, 1));
-//            entries3.add(new Entry(3, 7));
-//            entries3.add(new Entry(4, 3));
-//
-//            // Créer un LineDataSet avec ces points
-//            LineDataSet dataSet3 = new LineDataSet(entries3, "Données Exemple");
-//            dataSet3.setColor(0xFF416BE9);
-//            dataSet3.setValueTextSize(12f);
-//            dataSet3.setValueTextColor(getResources().getColor(R.color.black));
-//            dataSet3.setLineWidth(2f);
-//
-//            // Appliquer les données au graphique
-//            LineData lineData = new LineData(dataSet3);
-//            lineChart.setData(lineData);
-//
-//            // Enlever la description par défaut
-//            Description description = new Description();
-//            description.setText("");
-//
-//            lineChart.setDescription(description);
-//
-//
-//            lineChart.getXAxis().setDrawGridLines(false);
-//            lineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
-//            lineChart.getAxisLeft().setEnabled(false);
-//            lineChart.getAxisRight().setEnabled(false);
-//            // Rafraîchir le graphique
-//            lineChart.invalidate();
 
 
 

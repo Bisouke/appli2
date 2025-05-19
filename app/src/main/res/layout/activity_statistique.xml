@@ -228,7 +228,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_marginTop="40dp"
-                    android:background="#AAAAAA" />
+                    android:background="#AAAAAA"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/textView14"
@@ -237,13 +238,15 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
                     android:text="Distance parcourue par mois"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:visibility="gone" />
 
                 <com.github.mikephil.charting.charts.BarChart
                     android:id="@+id/barGraph2"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
-                    android:layout_marginBottom="60dp" />
+                    android:layout_marginBottom="60dp"
+                    android:visibility="gone" />
 
             </LinearLayout>
         </ScrollView>

@@ -178,4 +178,20 @@ public class GasData
         return String.valueOf(Math.round(this.total_price));
     }
 
+//    Pour récupérer une valeur float entre 0 et 365 à partir d'un LocalDateTime
+
+//    LocalDateTime now = LocalDateTime.now();
+//
+//    int dayOfYear = now.getDayOfYear(); // 1 à 365 (ou 366)
+//    int hour = now.getHour();
+//    int minute = now.getMinute();
+//
+//    // Ajout d'une fraction du jour
+//    float fractionOfDay = (hour + minute / 60f) / 24f;
+//
+//    // Résultat final en float entre 0 et 365
+//    float dayAsFloat = (dayOfYear - 1) + fractionOfDay;
+//
+//    System.out.println("Jour dans l'année (float) : " + dayAsFloat);
+
 }

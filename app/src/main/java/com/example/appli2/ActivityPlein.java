@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.Editable;
@@ -34,8 +33,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
-
-import android.graphics.drawable.Drawable;
 
 // BUG : CRASH SANS LE FICHIER AllGasData.json
 // Attention, lorsque le fichier allGasData est supprimé, cela fait planter l'activité, il n'est

@@ -16,6 +16,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 // BUG : CRASH SANS LE FICHIER AllGasData.json
@@ -45,6 +46,29 @@ public class GasDataCollection {
     /*******************************************************
      *           GAS DATA COLLECTION INTERFACE             *
      *******************************************************/
+
+    public HashMap<Integer, Float> getMonthExpense()
+    {
+
+        HashMap<Integer, Float> map = new HashMap<>();
+
+        // pour chaque mois
+        for(int month_var = 1; month_var <= 12; month_var++)
+        {
+            float monthExpense = 0f;
+            // pour chaque gasdata sauvegardé
+            for(GasData gasdata : allGasData)
+            {
+                // si gasdata month == actual month variable
+                if(gasdata.getDate().getMonthValue() == month_var)
+                    // ajouter le prix du plein au total du mois
+                    monthExpense += gasdata.getTotalPrice();
+            }
+            map.put(month_var, monthExpense);
+        }
+
+        return map;
+    }
 
     public void addGasData(GasData arg)
     {

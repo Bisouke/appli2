@@ -1,6 +1,7 @@
 package com.example.appli2;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -94,6 +95,8 @@ public class ActivityStatistique extends AppCompatActivity {
 //            expenseByMonthMap.put(key, sum);
 //            // Log.d("DEBUG", key + " --> " + sum + " €");
 //        }
+
+        Log.d("DEBUG", gasCollection.getMonthExpense().toString());
 
 
         /*******************************************************

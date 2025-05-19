@@ -44,6 +44,9 @@ public class ActivityStatistique extends AppCompatActivity {
 
     GasDataCollection gasCollection;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +94,90 @@ public class ActivityStatistique extends AppCompatActivity {
 //            expenseByMonthMap.put(key, sum);
 //            // Log.d("DEBUG", key + " --> " + sum + " €");
 //        }
+
+
+        /*******************************************************
+         *                 B A R      C H A R T     1          *
+         *******************************************************/
+
+        // 1️⃣ Trouver l'élément BarChart dans le layout
+        BarChart barGraph1 = findViewById(R.id.barGraph1);
+
+        // 2️⃣ Ajouter des données (dépenses sur 12 mois)
+        ArrayList<BarEntry> entriesb1 = new ArrayList<>();
+        entriesb1.add(new BarEntry(0f, 10)); // Janvier
+        entriesb1.add(new BarEntry(1f, 20)); // Février
+        entriesb1.add(new BarEntry(2f, 30)); // Mars
+        entriesb1.add(new BarEntry(3f, 40)); // Avril
+        entriesb1.add(new BarEntry(4f, 50)); // Mai
+        entriesb1.add(new BarEntry(5f, 60)); // Juin
+        entriesb1.add(new BarEntry(6f, 50)); // Juillet
+        entriesb1.add(new BarEntry(7f, 40)); // Aout
+        entriesb1.add(new BarEntry(8f, 30)); // Septembre
+        entriesb1.add(new BarEntry(9f, 20)); // Octobre
+        entriesb1.add(new BarEntry(10f, 10)); // Novembre
+        entriesb1.add(new BarEntry(11f, 0)); // Décembre
+
+
+        // 3️⃣ Créer un DataSet avec les entrées
+        BarDataSet dataSetb1 = new BarDataSet(entriesb1, "Dépenses mensuelles (€)");
+        dataSetb1.setColor(0xFF416BE9); // Couleur des barres
+        dataSetb1.setValueTextColor(0xFF000000); // Couleur des valeurs
+        dataSetb1.setValueTextSize(16f);
+
+        // 4️⃣ Créer des BarData et associer au graphique
+        BarData barData1 = new BarData(dataSetb1);
+        barGraph1.setData(barData1);
+
+
+        barGraph1.getDescription().setEnabled(false); // Désactive la description
+        barGraph1.setDrawBarShadow(false); // Désactive l'ombre sous les barres
+
+        XAxis xAxis2 = barGraph1.getXAxis();
+        YAxis leftAxis2 = barGraph1.getAxisLeft();
+        YAxis rightAxis2 = barGraph1.getAxisRight();
+
+        xAxis2.setLabelRotationAngle(-45f);     // rotation des x labels (gain de places)
+        xAxis2.setLabelCount(12);               // afficher tous les x labels
+        xAxis2.setDrawGridLines(false);
+        xAxis2.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis2.setTextSize(16f);
+
+        xAxis2.setValueFormatter(new ValueFormatter()
+        {
+            @Override
+            public String getFormattedValue(float value) {
+                // Format pour afficher les mois
+                switch ((int) value) {
+                    case 0: return "Jan";
+                    case 1: return "Fev";
+                    case 2: return "Mar";
+                    case 3: return "Avr";
+                    case 4: return "Mai";
+                    case 5: return "Jui";
+                    case 6: return "Jul";
+                    case 7: return "Aou";
+                    case 8: return "Sep";
+                    case 9: return "Oct";
+                    case 10: return "Nov";
+                    case 11: return "Dec";
+                    default: return "";
+                }
+            }
+        });
+
+        leftAxis2.setEnabled(false);
+        rightAxis2.setEnabled(false);
+
+
+
+        leftAxis2.setAxisMinimum(0f); // Valeur minimale de l'axe Y
+
+
+
+        barGraph1.getLegend().setEnabled(false);
+        barGraph1.animateY(800); // Animation verticale
+        barGraph1.invalidate(); // Rafraîchir l'affichage
 
 
         /*******************************************************
@@ -254,75 +341,6 @@ public class ActivityStatistique extends AppCompatActivity {
 //            // Rafraîchir le graphique
 //            lineChart.invalidate();
 
-
-
-
-        /*******************************************************
-         *                 B A R      C H A R T                *
-         *******************************************************/
-
-        // 1️⃣ Trouver l'élément BarChart dans le layout
-        BarChart barChart2 = findViewById(R.id.barGraph2);
-
-        // 2️⃣ Ajouter des données (dépenses sur 12 mois)
-        ArrayList<BarEntry> entriesb2 = new ArrayList<>();
-        entriesb2.add(new BarEntry(0f, 22)); // Janvier : 200€
-        entriesb2.add(new BarEntry(1f, 10)); // Février : 150€
-        entriesb2.add(new BarEntry(2f, 30)); // Mars : 180€
-
-
-        // 3️⃣ Créer un DataSet avec les entrées
-        BarDataSet dataSetb2 = new BarDataSet(entriesb2, "Dépenses mensuelles (€)");
-        dataSetb2.setColor(0xFF416BE9); // Couleur des barres
-        dataSetb2.setValueTextColor(0xFF000000); // Couleur des valeurs
-        dataSetb2.setValueTextSize(16f);
-
-        // 4️⃣ Créer des BarData et associer au graphique
-        BarData barData2 = new BarData(dataSetb2);
-        barChart2.setData(barData2);
-
-
-        barChart2.getDescription().setEnabled(false); // Désactive la description
-        barChart2.setDrawBarShadow(false); // Désactive l'ombre sous les barres
-
-        XAxis xAxis2 = barChart2.getXAxis();
-        YAxis leftAxis2 = barChart2.getAxisLeft();
-        YAxis rightAxis2 = barChart2.getAxisRight();
-
-        leftAxis2.setEnabled(false);
-        rightAxis2.setEnabled(false);
-
-        xAxis2.setDrawGridLines(false);
-
-        leftAxis2.setAxisMinimum(0f); // Valeur minimale de l'axe Y
-
-        xAxis2.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis2.setTextSize(16f);
-        xAxis2.setValueFormatter(new ValueFormatter() {
-            @Override
-            public String getFormattedValue(float value) {
-                // Format pour afficher les mois
-                switch ((int) value) {
-                    case 0: return "Jan";
-                    case 1: return "Fév";
-                    case 2: return "Mar";
-                    case 3: return "Avr";
-                    case 4: return "Mai";
-                    case 5: return "Jui";
-                    case 6: return "Jul";
-                    case 7: return "Aoû";
-                    case 8: return "Sep";
-                    case 9: return "Oct";
-                    case 10: return "Nov";
-                    case 11: return "Déc";
-                    default: return "";
-                }
-            }
-        });
-
-        barChart2.getLegend().setEnabled(false);
-        barChart2.animateY(800); // Animation verticale
-        barChart2.invalidate(); // Rafraîchir l'affichage
 
 
     }

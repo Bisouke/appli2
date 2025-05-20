@@ -12,29 +12,16 @@ import androidx.core.view.WindowInsetsCompat;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-
-
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.lang.reflect.Type;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -106,20 +93,16 @@ public class ActivityStatistique extends AppCompatActivity {
         // 1️⃣ Trouver l'élément BarChart dans le layout
         BarChart barGraph1 = findViewById(R.id.barGraph1);
 
+        // récupérer le prix dépensé chaque mois sur une année en carburant
+        HashMap<Integer, Float> monthExpenseMap = gasCollection.getMonthExpense();
+
         // 2️⃣ Ajouter des données (dépenses sur 12 mois)
         ArrayList<BarEntry> entriesb1 = new ArrayList<>();
-        entriesb1.add(new BarEntry(0f, 10)); // Janvier
-        entriesb1.add(new BarEntry(1f, 20)); // Février
-        entriesb1.add(new BarEntry(2f, 30)); // Mars
-        entriesb1.add(new BarEntry(3f, 40)); // Avril
-        entriesb1.add(new BarEntry(4f, 50)); // Mai
-        entriesb1.add(new BarEntry(5f, 60)); // Juin
-        entriesb1.add(new BarEntry(6f, 50)); // Juillet
-        entriesb1.add(new BarEntry(7f, 40)); // Aout
-        entriesb1.add(new BarEntry(8f, 30)); // Septembre
-        entriesb1.add(new BarEntry(9f, 20)); // Octobre
-        entriesb1.add(new BarEntry(10f, 10)); // Novembre
-        entriesb1.add(new BarEntry(11f, 0)); // Décembre
+        // ajouter les données de chaque mois
+        for (int i = 1; i <= 12; i++)
+        {
+            entriesb1.add(new BarEntry(i - 1, monthExpenseMap.getOrDefault(i, 0f)));
+        }
 
 
         // 3️⃣ Créer un DataSet avec les entrées
@@ -194,10 +177,8 @@ public class ActivityStatistique extends AppCompatActivity {
             // Créer une liste de points (x, y)
             ArrayList<Entry> entries3 = new ArrayList<>();
             entries3.add(new Entry(0f, 0));
-            entries3.add(new Entry(0.01f, 2));
-            entries3.add(new Entry(1f, 2));
-            entries3.add(new Entry(1.01f, 4));
-            entries3.add(new Entry(2f, 4));
+            entries3.add(new Entry(18f, 4));
+            entries3.add(new Entry(365f, 4));
 
             // Créer un LineDataSet avec ces points
             LineDataSet dataSet3 = new LineDataSet(entries3, "Données Exemple");

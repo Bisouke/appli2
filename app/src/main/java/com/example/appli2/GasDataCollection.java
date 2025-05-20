@@ -1,9 +1,13 @@
 package com.example.appli2;
 
 import android.content.Context;
+
+import androidx.annotation.NonNull;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -47,6 +51,7 @@ public class GasDataCollection {
      *           GAS DATA COLLECTION INTERFACE             *
      *******************************************************/
 
+    @NonNull
     public HashMap<Integer, Float> getMonthExpense()
     {
 
@@ -66,6 +71,7 @@ public class GasDataCollection {
             }
             map.put(month_var, monthExpense);
         }
+
 
         return map;
     }

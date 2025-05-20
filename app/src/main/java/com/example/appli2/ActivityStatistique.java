@@ -41,6 +41,7 @@ public class ActivityStatistique extends AppCompatActivity {
     TextView textViewYear;
 
     LocalDateTime datetime;
+    int year;
 
 
 
@@ -70,7 +71,11 @@ public class ActivityStatistique extends AppCompatActivity {
         });
 
         // Get actual year
-        
+        datetime = LocalDateTime.now();
+        year = datetime.getYear();
+        textViewYear.setText(String.valueOf(year));
+
+
 
         /*******************************************************
          *           D A T A      P R O C E S S I N G          *

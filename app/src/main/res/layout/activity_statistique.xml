@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
-                android:text="2025"
+                android:text="YYYY"
                 android:textSize="24sp" />
 
             <ImageButton

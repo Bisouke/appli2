@@ -39,12 +39,31 @@ public class GasDataCollection {
     static final String GASDATAFILENAME = "allGasData.json";
     private Context context = null;
 
+    private Comparator<GasData> comparator_oldest_top, comparator_youngest_top;
+
 
 
     public GasDataCollection(Context arg_context)
     {
         context = arg_context;
         updateGasDataFromFile();
+
+        // comparator oldest top
+        comparator_oldest_top = new Comparator<GasData>() {
+            @Override
+            public int compare(GasData a, GasData b) {
+                return a.getDatetime().compareTo(b.getDatetime());
+            }
+        };
+
+        // comparator youngest top
+        comparator_youngest_top = new Comparator<GasData>() {
+            @Override
+            public int compare(GasData a, GasData b) {
+                return b.getDatetime().compareTo(a.getDatetime());
+            }
+        };
+
     }
 
     /*******************************************************
@@ -71,9 +90,10 @@ public class GasDataCollection {
             map.put(month_var, monthExpense);
         }
 
-
         return map;
     }
+
+
 
     public void addGasData(GasData arg)
     {
@@ -100,21 +120,7 @@ public class GasDataCollection {
         // copy the gas data collection list
         List<GasData> allGasDataCopy = new ArrayList<>(allGasData);
 
-        // comparator oldest top
-        Comparator<GasData> comparator_oldest_top = new Comparator<GasData>() {
-            @Override
-            public int compare(GasData a, GasData b) {
-                return a.getDatetime().compareTo(b.getDatetime());
-            }
-        };
 
-        // comparator youngest top
-        Comparator<GasData> comparator_youngest_top = new Comparator<GasData>() {
-            @Override
-            public int compare(GasData a, GasData b) {
-                return b.getDatetime().compareTo(a.getDatetime());
-            }
-        };
 
         // sorting
         if (arg_order == OLDEST_TOP)
@@ -137,6 +143,26 @@ public class GasDataCollection {
 
     }
 
+    public List<GasData> getGasDataFromYear(int arg_year)
+    {
+        // return oldest top
+
+        List<GasData> temp_list = new ArrayList<>();
+
+        for (GasData gasdata : allGasData)
+        {
+            if (gasdata.getDatetime().getYear() == arg_year)
+                temp_list.add(gasdata);
+
+        }
+
+        // trier par date croissante
+        Collections.sort(temp_list, comparator_oldest_top);
+
+        return temp_list;
+
+    }
+
     public int getGasDataSize()
     {
         return allGasData.size();
@@ -145,12 +171,6 @@ public class GasDataCollection {
     /*******************************************************
      *              GAS DATA FILE READ WRITE               *
      *******************************************************/
-
-
-    void sort ()
-    {
-
-    }
 
     public void updateGasDataFromFile()
     {

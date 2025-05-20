@@ -79,6 +79,11 @@ public class ActivityStatistique extends AppCompatActivity {
         // Display it on startup
         textViewYear.setText(String.valueOf(year));
 
+        // test
+        // liste des gasdata sur une année, oldest top
+        List<GasData> list = gasCollection.getGasDataFromYear(2025);
+        Log.d("DEBUG", list.toString());
+
 
         /*******************************************************
          *                   L I S T E N E R S                 *

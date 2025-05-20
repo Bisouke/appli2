@@ -102,8 +102,8 @@ public class GasData
     public String toString()
     {
 
-        return "" + date.format(date_formatter) + " à " + time + "  - " + numberFormat1.format(total_price)
-                + " € de " + fuel + "\n " + numberFormat2.format(price_liter) +
+        return "\n" + date.format(date_formatter) + " à " + time + "  - " + numberFormat1.format(total_price)
+                + " € de " + fuel + ", " + numberFormat2.format(price_liter) +
                 " €/L soit " + numberFormat1.format(volume) + "L à " + km + " km";
     }
 

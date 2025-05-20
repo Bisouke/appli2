@@ -32,8 +32,8 @@ public class ActivityHistorique2 extends AppCompatActivity {
 
     private ImageButton imgButtonSupprimer, imgButtonFiltre, imgButtonTri;
     private boolean triFlag = true;
-    private TextView textViewFiltresLn1, textViewFiltresLn2;
-    private TextView textViewPleinsLn1, textViewPleinsLn2;
+    private TextView textViewFiltresLn1, textViewFiltresLn2, textViewPleinsLn1,
+            textViewPleinsLn2, textViewNbPleins;
     private LinearLayout linearLayoutHistorique;
     private GasDataCollection gasdataCollec;
     @Nullable
@@ -77,6 +77,9 @@ public class ActivityHistorique2 extends AppCompatActivity {
         // LinearLayout
         linearLayoutHistorique = findViewById(R.id.linearLayoutHistorique);
 
+        // TextView nb pleins enregistrés
+        textViewNbPleins = findViewById(R.id.textViewNbPleins);
+
 
         // for gas data database access
         gasdataCollec = new GasDataCollection(this);
@@ -84,8 +87,12 @@ public class ActivityHistorique2 extends AppCompatActivity {
         // vibrator
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
-        // affiche le nombre de plein enregistrés
+        // affiche le nombre de plein affichés à l'écran (après filtrage)
+        // en développement
         textViewPleinsLn1.setText(gasdataCollec.getGasDataSize() + " pleins");
+
+        // affiche le nombre total de pleins enregistrés
+        textViewNbPleins.setText(gasdataCollec.getGasDataSize() + " pleins enregistrés");
 
         // get and show all gas data from file
         inflateGasDataViews();

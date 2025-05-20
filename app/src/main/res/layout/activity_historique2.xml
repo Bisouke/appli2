@@ -91,10 +91,11 @@
 
             <ImageButton
                 android:id="@+id/imageButtonTri"
-                android:layout_width="65sp"
-                android:layout_height="45sp"
+                android:layout_width="70sp"
+                android:layout_height="50sp"
                 android:layout_marginLeft="10sp"
                 android:background="@null"
+                android:padding="5sp"
                 android:scaleType="fitEnd"
                 app:srcCompat="@drawable/up_arrow" />
 
@@ -138,6 +139,13 @@
                     android:layout_height="20dp" />
             </LinearLayout>
         </ScrollView>
+
+        <TextView
+            android:id="@+id/textViewNbPleins"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="X pleins enregistrés" />
 
         <!-- android:listSelector="@android:color/holo_blue_light" -->
 

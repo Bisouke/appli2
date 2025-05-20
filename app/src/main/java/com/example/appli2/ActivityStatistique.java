@@ -2,6 +2,9 @@ package com.example.appli2;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +25,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,6 +35,12 @@ import java.util.Map;
 public class ActivityStatistique extends AppCompatActivity {
 
     GasDataCollection gasCollection;
+
+    ImageButton buttonLeftArrow;
+
+    TextView textViewYear;
+
+    LocalDateTime datetime;
 
 
 
@@ -47,6 +57,20 @@ public class ActivityStatistique extends AppCompatActivity {
         });
 
         gasCollection = new GasDataCollection(this);
+
+        textViewYear = findViewById(R.id.textViewYear);
+
+        buttonLeftArrow = findViewById(R.id.buttonLeftArrow);
+
+        buttonLeftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("DEBUG", "click left arrow");
+            }
+        });
+
+        // Get actual year
+        
 
         /*******************************************************
          *           D A T A      P R O C E S S I N G          *

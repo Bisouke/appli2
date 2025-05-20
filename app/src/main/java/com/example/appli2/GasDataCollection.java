@@ -51,8 +51,7 @@ public class GasDataCollection {
      *           GAS DATA COLLECTION INTERFACE             *
      *******************************************************/
 
-    @NonNull
-    public HashMap<Integer, Float> getMonthExpense()
+    public HashMap<Integer, Float> getMonthExpense(int arg_year)
     {
 
         HashMap<Integer, Float> map = new HashMap<>();
@@ -64,8 +63,8 @@ public class GasDataCollection {
             // pour chaque gasdata sauvegardé
             for(GasData gasdata : allGasData)
             {
-                // si gasdata month == actual month variable
-                if(gasdata.getDate().getMonthValue() == month_var)
+                // si gasdata month == actual month variable && gasdata year == arg_year
+                if(gasdata.getDate().getMonthValue() == month_var && gasdata.getDate().getYear() == arg_year)
                     // ajouter le prix du plein au total du mois
                     monthExpense += gasdata.getTotalPrice();
             }

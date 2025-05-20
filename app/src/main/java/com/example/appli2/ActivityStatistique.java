@@ -36,7 +36,7 @@ public class ActivityStatistique extends AppCompatActivity {
 
     GasDataCollection gasCollection;
 
-    ImageButton buttonLeftArrow;
+    ImageButton buttonLeftArrow, buttonRightArrow;
 
     TextView textViewYear;
 
@@ -59,14 +59,26 @@ public class ActivityStatistique extends AppCompatActivity {
 
         gasCollection = new GasDataCollection(this);
 
+        // year text
         textViewYear = findViewById(R.id.textViewYear);
 
+        // year buttons
         buttonLeftArrow = findViewById(R.id.buttonLeftArrow);
+        buttonRightArrow = findViewById(R.id.buttonRightArrow);
 
         buttonLeftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("DEBUG", "click left arrow");
+                year--;
+                textViewYear.setText(String.valueOf(year));
+            }
+        });
+
+        buttonRightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                year++;
+                textViewYear.setText(String.valueOf(year));
             }
         });
 
